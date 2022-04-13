@@ -20,8 +20,8 @@ function App() {
               <Route path='/dialogs' element={<Dialogs />}/>
               <Route path='/profile' element={<Profile />}/>
               {/*<Route path='/news' element={<News />}/>
-              <Route path='/music' element={<Music />}/>*/}
-              {/*<Route path='/settings' element={<Profile />}/>*/}
+              <Route path='/music' element={<Music />}/>
+              <Route path='/settings' element={<Profile />}/>*/}
             </Routes>
           </div>
         </div>

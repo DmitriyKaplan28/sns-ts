@@ -3,6 +3,15 @@ import classes from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 
 export const MyPosts = () => {
+
+    let posts = [
+        {id: "1", post: "Hi how are you", like: '10 likes'},
+        {id: "2", post: "my first post", like: '5 likes'}
+    ]
+    let postsElements = posts.map((post) =>
+        <Post message={post.post} like={post.like}/>
+    )
+
     return (
 
         <div className={classes.postsBlock}>
@@ -16,8 +25,9 @@ export const MyPosts = () => {
                 </div>
             </div>
             <div className={classes.post}>
-                <Post message='Hi how are you' like={'10 likes'}/>
-                <Post message='my first post' like={'5 likes'}/>
+
+                {postsElements}
+
             </div>
         </div>
     );
