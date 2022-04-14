@@ -1,9 +1,13 @@
 import React from "react";
 import classes from './MyPosts.module.css';
-import {Post} from "./Post/Post";
-import {DataType} from "../../../App";
+import {Post, PostPropsType} from "./Post/Post";
+import {AppStateType} from "../../../App";
 
-export const MyPosts = (props: DataType) => {
+type MyPostsType = {
+    posts: PostPropsType[]
+}
+
+export const MyPosts = (props: MyPostsType) => {
 
     let postsElements = props?.posts?.map((post) =>
         <Post post={post.post} like={post.like}/>
