@@ -10,6 +10,7 @@ export type ProfileStateType = {
 
 type ProfileType = {
     profileState: ProfileStateType
+    addPost: (postMessage:string)=> void
 
 }
 
@@ -17,7 +18,7 @@ export const Profile = (props: ProfileType) => {
     return (
         <div >
             <ProfileInfo/>
-            <MyPosts posts={props.profileState.posts}/>
+            <MyPosts posts={props.profileState.posts} addPost={props.addPost}/>
         </div>
     );
 }

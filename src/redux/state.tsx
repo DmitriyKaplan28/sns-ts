@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {reRenderEntireTree} from "../Render";
 
 
 export let state = {
@@ -27,11 +28,12 @@ export let state = {
 
 }
 
-export let addPost = (postMessage:string) => {
-    let newPost = {
+export const addPost = (postMessage:string) => {
+    const newPost = {
         id: '5',
         post: postMessage,
         like: '0 likes'
     };
     state.profilePage.posts.push(newPost);
+    reRenderEntireTree(state)
 }

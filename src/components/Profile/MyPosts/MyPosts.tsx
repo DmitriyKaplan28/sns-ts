@@ -5,6 +5,7 @@ import {AppStateType} from "../../../App";
 
 type MyPostsType = {
     posts: PostPropsType[]
+    addPost: (postMessage:string)=> void
 }
 
 export const MyPosts = (props: MyPostsType) => {
@@ -15,9 +16,11 @@ export const MyPosts = (props: MyPostsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-   let addPost = () => {
-        let text = newPostElement.current?.value;
-        alert( newPostElement.current?.value)
+   let addPostOne = () => {
+        /*let text = newPostElement.current?.value;*/
+       if (newPostElement.current)
+       {props.addPost(newPostElement.current?.value)};
+       newPostElement.current?.value = ''
     }
 
     return (
@@ -29,7 +32,7 @@ export const MyPosts = (props: MyPostsType) => {
                     <textarea ref={newPostElement}></textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPostOne}>Add post</button>
                 </div>
             </div>
             <div className={classes.post}>
