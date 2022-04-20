@@ -26,9 +26,6 @@ function App(props:AppStateType) {
             <Routes>
               <Route path='/dialogs' element={<Dialogs dialogsState={props.state.dialogsPage}/>}/>
               <Route path='/profile' element={<Profile profileState={props.state.profilePage}/>}/>
-              {/*<Route path='/news' element={<News />}/>
-              <Route path='/music' element={<Music />}/>
-              <Route path='/settings' element={<Profile />}/>*/}
             </Routes>
           </div>
         </div>

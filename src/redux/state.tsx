@@ -26,3 +26,12 @@ export let state = {
     }
 
 }
+
+export let addPost = (postMessage:string) => {
+    let newPost = {
+        id: '5',
+        post: postMessage,
+        like: '0 likes'
+    };
+    state.profilePage.posts.push(newPost);
+}
