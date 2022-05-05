@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {reRenderEntireTree} from "../Render";
+import {StateType} from "../App";
 
+let reRenderEntireTree = () => {
+    console.log('state is changing')
+}
 
 export let state = {
     profilePage: {
@@ -37,9 +40,13 @@ export const addPost = (newPostText:string) => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText=''
-    reRenderEntireTree(state)
+    reRenderEntireTree()
 }
 export const updateNewPostText = (newText:string) => {
     state.profilePage.newPostText = newText;
-    reRenderEntireTree(state)
+    reRenderEntireTree()
+}
+
+export const subscribe = (observer: ()=> void) => {
+    reRenderEntireTree = observer;
 }
