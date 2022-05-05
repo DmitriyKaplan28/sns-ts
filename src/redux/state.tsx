@@ -8,7 +8,8 @@ export let state = {
         posts: [
             {id: "1", post: "Hi how are you", like: '10 likes'},
             {id: "2", post: "my first post", like: '5 likes'}
-        ]
+        ],
+        newPostText: ''
     },
     dialogsPage: {
         dialogs: [
@@ -28,12 +29,17 @@ export let state = {
 
 }
 
-export const addPost = (postMessage:string) => {
+export const addPost = (newPostText:string) => {
     const newPost = {
         id: '5',
-        post: postMessage,
+        post: state.profilePage.newPostText,
         like: '0 likes'
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText=''
+    reRenderEntireTree(state)
+}
+export const updateNewPostText = (newText:string) => {
+    state.profilePage.newPostText = newText;
     reRenderEntireTree(state)
 }

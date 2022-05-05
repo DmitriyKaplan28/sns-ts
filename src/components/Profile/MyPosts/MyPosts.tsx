@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
 import {AppStateType} from "../../../App";
 
 type MyPostsType = {
     posts: PostPropsType[]
-    addPost: (postMessage:string)=> void
+    addPost: (newPostText:string) => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
 export const MyPosts = (props: MyPostsType) => {
@@ -17,11 +19,11 @@ export const MyPosts = (props: MyPostsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
     /*let [newPostElement, setNewPostElement] = useState(React.createRef<HTMLTextAreaElement>());*/
 
-   let addPostOne = () => {
-       if (newPostElement.current)
-       {props.addPost(newPostElement.current?.value)};
-       newPostElement.current!.value='';
+    let addPostOne = () => {
+        props.addPost(props.newPostText)
     }
+
+    let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{props.updateNewPostText(e.currentTarget.value)}
 
     return (
 
@@ -29,7 +31,8 @@ export const MyPosts = (props: MyPostsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange}
+                              value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPostOne}>Add post</button>
