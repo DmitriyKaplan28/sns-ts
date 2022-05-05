@@ -4,10 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile, ProfileStateType} from "./components/Profile/Profile";
 import {Dialogs, DialogsStateType} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {updateNewPostText} from "./redux/state";
-
-
+import {Routes, Route} from "react-router-dom";
 
 export type StateType= {
     profilePage: ProfileStateType

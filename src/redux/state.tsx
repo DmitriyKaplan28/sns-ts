@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {StateType} from "../App";
 
 let reRenderEntireTree = () => {
     console.log('state is changing')
@@ -29,7 +27,6 @@ export let state = {
             {id: "3", message: "lol"}
         ]
     }
-
 }
 
 export const addPost = (newPostText:string) => {
