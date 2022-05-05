@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
 import {AppStateType} from "../../../App";
@@ -15,12 +15,12 @@ export const MyPosts = (props: MyPostsType) => {
     )
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
+    /*let [newPostElement, setNewPostElement] = useState(React.createRef<HTMLTextAreaElement>());*/
 
    let addPostOne = () => {
-        /*let text = newPostElement.current?.value;*/
        if (newPostElement.current)
        {props.addPost(newPostElement.current?.value)};
-       /*newPostElement.current?.value = ''*/
+       newPostElement.current!.value='';
     }
 
     return (
