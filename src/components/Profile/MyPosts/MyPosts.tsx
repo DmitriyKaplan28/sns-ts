@@ -1,7 +1,6 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
+import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
-import {AppStateType} from "../../../App";
 import {ActionTypes, addPostAC, updateNewPostTextPostAC} from "../../../redux/state";
 
 type MyPostsType = {
@@ -32,7 +31,8 @@ export const MyPosts = (props: MyPostsType) => {
             <div>
                 <div>
                     <textarea onChange={onPostChange}
-                              value={props.newPostText}/>
+                              value={props.newPostText}
+                              placeholder='Enter your post'/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>

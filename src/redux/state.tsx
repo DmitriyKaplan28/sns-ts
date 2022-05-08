@@ -17,19 +17,42 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextPostAC>
+export type ActionTypes =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextPostAC>
+    | ReturnType<typeof updateNewMessageBodyAC>
+    | ReturnType<typeof sendMessageAC>
+
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export const addPostAC = (newPostText: string) => {
     return {
-        type: "ADD-POST",
+        type: ADD_POST,
         newPostText: newPostText
     } as const
 }
 
 export const updateNewPostTextPostAC = (newText: string) => {
     return {
-        type: "UPDATE-NEW-POST-TEXT",
+        type: UPDATE_NEW_POST_TEXT,
         newText: newText
+    } as const
+}
+
+export const updateNewMessageBodyAC = (newMessageBody: string) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_BODY,
+        newMessageBody: newMessageBody
+    } as const
+}
+
+export const sendMessageAC = (newMessageBody: string) => {
+    return {
+        type: SEND_MESSAGE,
+        newMessageBody: newMessageBody
     } as const
 }
 
@@ -54,8 +77,11 @@ export const store: StoreType = {
             messages: [
                 {id: "1", message: "hi"},
                 {id: "2", message: "bye"},
-                {id: "3", message: "lol"}
-            ]
+                {id: "3", message: "lol"},
+                {id: "4", message: "4"},
+                {id: "5", message: "5"},
+            ],
+            newMessageBody: ''
         }
     },
     _callSubscriber() {
@@ -70,7 +96,7 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost = {
                 id: '5',
                 post: action.newPostText,
@@ -79,12 +105,17 @@ export const store: StoreType = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = ''
             this._callSubscriber()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber()
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.newMessageBody;
+            this._callSubscriber()
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id:'6', message: body});
             this._callSubscriber()
         }
     }
 }
-
-
-//window.store = store
