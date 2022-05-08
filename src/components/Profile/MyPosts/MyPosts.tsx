@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, useState} from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
 import {AppStateType} from "../../../App";
-import {ActionTypes} from "../../../redux/state";
+import {ActionTypes, addPostAC, updateNewPostTextPostAC} from "../../../redux/state";
 
 type MyPostsType = {
     posts: PostPropsType[]
@@ -17,12 +17,12 @@ export const MyPosts = (props: MyPostsType) => {
     )
 
 
-    let addPostOne = () => {
-        props.dispatch({type: 'ADD-POST', newPostText:props.newPostText})
+    let addPost = () => {
+        props.dispatch(addPostAC(props.newPostText))
     }
 
     let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText:e.currentTarget.value})
+        props.dispatch(updateNewPostTextPostAC(e.currentTarget.value))
     }
 
     return (
@@ -35,7 +35,7 @@ export const MyPosts = (props: MyPostsType) => {
                               value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPostOne}>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
             <div className={classes.post}>
