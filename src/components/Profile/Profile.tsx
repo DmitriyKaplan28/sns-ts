@@ -3,7 +3,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {AppStateType} from "../../App";
 import {PostPropsType} from "./MyPosts/Post/Post";
-import {updateNewPostText} from "../../redux/state";
+
 
 export type ProfileStateType = {
     posts: PostPropsType[]

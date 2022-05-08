@@ -16,10 +16,9 @@ export const MyPosts = (props: MyPostsType) => {
         <Post post={post.post} like={post.like}/>
     )
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
-    /*let [newPostElement, setNewPostElement] = useState(React.createRef<HTMLTextAreaElement>());*/
 
     let addPostOne = () => {
+        debugger;
         props.addPost(props.newPostText)
     }
 
