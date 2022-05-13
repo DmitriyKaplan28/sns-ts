@@ -1,10 +1,13 @@
 import React from 'react';
 import {ProfileStateType} from "../components/Profile/Profile";
 import {DialogsStateType} from "../components/Dialogs/Dialogs";
+import {addPostAC, profileReducer, updateNewPostTextPostAC} from "./profileReducer";
+import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 export type StateType = {
     profilePage: ProfileStateType
     dialogsPage: DialogsStateType
+    sidebar: any
 }
 
 export type StoreType = {
@@ -22,39 +25,6 @@ export type ActionTypes =
     | ReturnType<typeof updateNewPostTextPostAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
-
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-const SEND_MESSAGE = 'SEND-MESSAGE'
-
-export const addPostAC = (newPostText: string) => {
-    return {
-        type: ADD_POST,
-        newPostText: newPostText
-    } as const
-}
-
-export const updateNewPostTextPostAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
-
-export const updateNewMessageBodyAC = (newMessageBody: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        newMessageBody: newMessageBody
-    } as const
-}
-
-export const sendMessageAC = (newMessageBody: string) => {
-    return {
-        type: SEND_MESSAGE,
-        newMessageBody: newMessageBody
-    } as const
-}
 
 export const store: StoreType = {
     _state: {
@@ -82,7 +52,8 @@ export const store: StoreType = {
                 {id: "5", message: "5"},
             ],
             newMessageBody: ''
-        }
+        },
+        sidebar: {},
     },
     _callSubscriber() {
         console.log('state is changing')
@@ -96,26 +67,8 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost = {
-                id: '5',
-                post: action.newPostText,
-                like: '0 likes'
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber()
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.newMessageBody;
-            this._callSubscriber()
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.messages.push({id:'6', message: body});
-            this._callSubscriber()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubscriber()
     }
 }
