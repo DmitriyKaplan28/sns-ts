@@ -7,10 +7,11 @@ import {Dialogs, DialogsStateType} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
 import {ActionTypes, StoreType} from "./redux/store";
 import {EmptyObject, Store} from "redux";
+import {ReduxStoreType} from "./redux/redux-store";
 
 
 export type AppStateType = {
-    store: StoreType
+    store: ReduxStoreType
 }
 
 function App(props: AppStateType) {

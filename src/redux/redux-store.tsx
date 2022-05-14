@@ -3,8 +3,12 @@ import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 
 let rootReducers = combineReducers({
-    profileReducer: profileReducer,
-    dialogsReducer: dialogsReducer,
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
 });
 
 export let store = legacy_createStore(rootReducers);
+
+export type ReduxStoreType = typeof store
+
+export type AppStateType = ReturnType<typeof rootReducers>
