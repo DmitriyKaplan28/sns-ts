@@ -3,6 +3,7 @@ import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
 import {ActionTypes} from "../../../redux/store";
 import {addPostAC, updateNewPostTextPostAC} from "../../../redux/profileReducer";
+import {MyPosts} from "../MyPosts";
 
 type MyPostsType = {
     posts: PostPropsType[]
@@ -10,7 +11,7 @@ type MyPostsType = {
     dispatch : (action:ActionTypes) => void
 }
 
-export const MyPosts = (props: MyPostsType) => {
+export const MyPostsContainer = (props: MyPostsType) => {
 
     let postsElements = props?.posts?.map((post) =>
         <Post post={post.post} like={post.like}/>
@@ -26,22 +27,6 @@ export const MyPosts = (props: MyPostsType) => {
     }
 
     return (
-
-        <div className={classes.postsBlock}>
-            <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea onChange={onPostChange}
-                              value={props.newPostText}
-                              placeholder='Enter your post'/>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
-            <div className={classes.post}>
-                {postsElements}
-            </div>
-        </div>
+        <MyPosts />
     );
 }
