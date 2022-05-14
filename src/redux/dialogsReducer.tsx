@@ -1,10 +1,29 @@
-import {ActionTypes} from "./state";
+import {ActionTypes} from "./store";
 import {DialogsStateType} from "../components/Dialogs/Dialogs";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-export const dialogsReducer = (state: DialogsStateType, action: ActionTypes) => {
+let initialState = {
+    dialogs: [
+        {id: "1", name: "Dmitriy"},
+        {id: "2", name: "Oksana"},
+        {id: "3", name: "Andrey"},
+        {id: "4", name: "4"},
+        {id: "5", name: "5"},
+        {id: "6", name: "6"}
+    ],
+    messages: [
+        {id: "1", message: "hi"},
+        {id: "2", message: "bye"},
+        {id: "3", message: "lol"},
+        {id: "4", message: "4"},
+        {id: "5", message: "5"},
+    ],
+    newMessageBody: ''
+}
+
+export const dialogsReducer = (state: DialogsStateType = initialState, action: ActionTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.newMessageBody;

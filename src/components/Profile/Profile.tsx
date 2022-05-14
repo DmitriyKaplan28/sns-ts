@@ -3,7 +3,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {AppStateType} from "../../App";
 import {PostPropsType} from "./MyPosts/Post/Post";
-import {ActionTypes} from "../../redux/state";
+import {ActionTypes} from "../../redux/store";
 
 
 export type ProfileStateType = {

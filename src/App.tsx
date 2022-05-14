@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
+import {Profile, ProfileStateType} from "./components/Profile/Profile";
+import {Dialogs, DialogsStateType} from "./components/Dialogs/Dialogs";
 import {Routes, Route} from "react-router-dom";
-import {StoreType} from "./redux/state";
+import {ActionTypes, StoreType} from "./redux/store";
+import {EmptyObject, Store} from "redux";
 
 
 export type AppStateType = {
