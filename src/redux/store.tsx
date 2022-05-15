@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileStateType} from "../components/Profile/Profile";
-import {DialogsStateType} from "../components/Dialogs/Dialogs";
+import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
