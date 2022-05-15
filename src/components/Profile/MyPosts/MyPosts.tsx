@@ -1,8 +1,6 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
-import {ActionTypes} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
 
 type MyPostsType = {
     posts: PostPropsType[]
@@ -16,7 +14,6 @@ export const MyPosts = (props: MyPostsType) => {
     let postsElements = props?.posts?.map((post) =>
         <Post post={post.post} like={post.like}/>
     )
-    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
         props.addPost(props.newPostText)
