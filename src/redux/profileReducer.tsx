@@ -38,7 +38,7 @@ export const addPostAC = (newPostText: string) => {
     } as const
 }
 
-export const updateNewPostTextPostAC = (newText: string) => {
+export const updateNewPostTextAC = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newText

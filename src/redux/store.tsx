@@ -1,7 +1,7 @@
 import React from 'react';
 import {ProfileStateType} from "../components/Profile/Profile";
 import {DialogsStateType} from "../components/Dialogs/Dialogs";
-import {addPostAC, profileReducer, updateNewPostTextPostAC} from "./profileReducer";
+import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 
 export type StateType = {
@@ -22,7 +22,7 @@ export type StoreType = {
 
 export type ActionTypes =
     ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
 

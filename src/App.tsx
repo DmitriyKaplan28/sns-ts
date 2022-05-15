@@ -8,6 +8,7 @@ import {Routes, Route} from "react-router-dom";
 import {ActionTypes, StoreType} from "./redux/store";
 import {EmptyObject, Store} from "redux";
 import {ReduxStoreType} from "./redux/redux-store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
 export type AppStateType = {
@@ -21,7 +22,7 @@ function App(props: AppStateType) {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/dialogs' element={<Dialogs dialogsState={props.store.getState().dialogsPage}
+                    <Route path='/dialogs' element={<DialogsContainer dialogsState={props.store.getState().dialogsPage}
                                                              dispatch={props.store.dispatch.bind(props.store)}
                     />}/>
                     <Route path='/profile' element={<Profile profileState={props.store.getState().profilePage}
