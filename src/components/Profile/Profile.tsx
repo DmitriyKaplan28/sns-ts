@@ -11,16 +11,17 @@ export type ProfileStateType = {
 }
 
 type ProfileType = {
-    profileState: ProfileStateType
-    dispatch: (action: ActionTypes) => void
+    /*profileState: ProfileStateType
+    dispatch: (action: ActionTypes) => void*/
 }
 
 export const Profile = (props: ProfileType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer state={props.profileState}
-                              dispatch={props.dispatch}/>
+            {/*<MyPostsContainer state={props.profileState}
+                              dispatch={props.dispatch}/>*/}
+            <MyPostsContainer />
         </div>
     );
 }

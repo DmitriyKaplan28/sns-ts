@@ -22,14 +22,7 @@ export const MyPosts = (props: MyPostsType) => {
     let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{
         props.updateNewPostText(e.currentTarget.value)
     }
-
-   /* let addPost = () => {
-        props.dispatch(addPostAC(props.newPostText))
-    }*/
-
-    /*let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
-    }*/
+    
 
     return (
 
