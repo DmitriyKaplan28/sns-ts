@@ -4,7 +4,7 @@ import {ProfileStateType} from "../components/Profile/Profile";
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-let initialState = {
+let initialState: ProfileStateType = {
     posts: [
         {id: "1", post: "Hi how are you", like: '10 likes'},
         {id: "2", post: "my first post", like: '5 likes'}
@@ -12,7 +12,7 @@ let initialState = {
     newPostText: ''
 }
 
-export const profileReducer = (state: ProfileStateType = initialState, action: ActionTypes) => {
+export const profileReducer = (state: ProfileStateType = initialState, action: ActionTypes): ProfileStateType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
