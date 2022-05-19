@@ -3,24 +3,24 @@ import {Users} from "./Users";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {followAC, setUsersAC, unfollowAC, UsersType} from "../../redux/usersReducer";
+import {followAC, setUsersAC, unfollowAC, UsersType, UserType} from "../../redux/usersReducer";
 
 
 type UsersMapStateToPropsDialogsType = {
-    users: UsersType
+    usersState: UsersType
 }
 
 type UsersMapDispatchToPropsDialogsType = {
     follow: (id: string) => void
     unfollow: (id: string) => void
-    setUsers: (users: UsersType) => void
+    setUsers: (users: UserType[]) => void
 }
 
 export type UsersPropsType = UsersMapStateToPropsDialogsType & UsersMapDispatchToPropsDialogsType
 
-let mapStateToProps = (state: UsersType): UsersMapStateToPropsDialogsType => {
+let mapStateToProps = (state: AppStateType): UsersMapStateToPropsDialogsType => {
     return {
-        users: state.users
+        usersState: state.usersPage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsType => {
@@ -31,7 +31,7 @@ let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsTyp
         unfollow: (id: string) => {
             dispatch(unfollowAC(id))
         },
-        setUsers: (users: UsersType) => {
+        setUsers: (users: UserType[]) => {
             dispatch(setUsersAC(users))
         },
     }
