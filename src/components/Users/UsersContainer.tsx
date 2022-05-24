@@ -11,8 +11,8 @@ type UsersMapStateToPropsDialogsType = {
 }
 
 type UsersMapDispatchToPropsDialogsType = {
-    follow: (id: string) => void
-    unfollow: (id: string) => void
+    follow: (id: number) => void
+    unfollow: (id: number) => void
     setUsers: (users: UserType[]) => void
 }
 
@@ -25,10 +25,10 @@ let mapStateToProps = (state: AppStateType): UsersMapStateToPropsDialogsType => 
 }
 let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsType => {
     return {
-        follow: (id: string) => {
+        follow: (id: number) => {
             dispatch(followAC(id))
         },
-        unfollow: (id: string) => {
+        unfollow: (id: number) => {
             dispatch(unfollowAC(id))
         },
         setUsers: (users: UserType[]) => {
