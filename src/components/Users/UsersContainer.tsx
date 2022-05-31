@@ -1,5 +1,5 @@
 import React from 'react';
-import {UsersC} from "./UsersC";
+
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
@@ -12,6 +12,8 @@ import {
     UsersType,
     UserType
 } from "../../redux/usersReducer";
+import axios from "axios";
+import {UsersFunctional} from "./UsersFunctional";
 
 
 type UsersMapStateToPropsDialogsType = {
@@ -27,6 +29,33 @@ type UsersMapDispatchToPropsDialogsType = {
 }
 
 export type UsersPropsType = UsersMapStateToPropsDialogsType & UsersMapDispatchToPropsDialogsType
+
+export class UsersC extends React.Component<UsersPropsType> {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersState.currentPage}&count=${this.props.usersState.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
+        });
+    }
+
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersState.pageSize}`).then(response => {
+            this.props.setUsers(response.data.items)
+        });
+    }
+
+    render() {
+        return <UsersFunctional usersState={this.props.usersState}
+                                follow={this.props.follow}
+                                unfollow={this.props.unfollow}
+                                setCurrentPage={this.props.setCurrentPage}
+                                onPageChanged={this.onPageChanged}
+        />;
+    }
+}
+
 
 let mapStateToProps = (state: AppStateType): UsersMapStateToPropsDialogsType => {
     return {
@@ -53,4 +82,4 @@ let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsTyp
     }
 }
 
-export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersC);
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC);
