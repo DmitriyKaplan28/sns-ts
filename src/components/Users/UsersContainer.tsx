@@ -2,7 +2,6 @@ import React from 'react';
 
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import {
     followAC,
     setCurrentPageAC,
@@ -14,7 +13,6 @@ import {
 } from "../../redux/usersReducer";
 import axios from "axios";
 import {UsersFunctional} from "./UsersFunctional";
-import preloader from "./../../assets/loader.gif";
 import {Preloader} from "../common/Preloader";
 
 
@@ -55,7 +53,7 @@ export class UsersC extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.usersState.isFetching ? <Preloader />: null}
+            {this.props.usersState.isFetching ? <Preloader/> : null}
             <UsersFunctional usersState={this.props.usersState}
                              follow={this.props.follow}
                              unfollow={this.props.unfollow}
@@ -72,27 +70,13 @@ let mapStateToProps = (state: AppStateType): UsersMapStateToPropsDialogsType => 
         usersState: state.usersPage
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsType => {
-    return {
-        follow: (id: number) => {
-            dispatch(followAC(id))
-        },
-        unfollow: (id: number) => {
-            dispatch(unfollowAC(id))
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalUsersCount: number) => {
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        },
-    }
-}
 
-    export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersC);
+export const UsersContainer = connect(mapStateToProps,
+    {
+        follow: followAC,
+        unfollow: unfollowAC,
+        setUsers: setUsersAC,
+        setCurrentPage: setCurrentPageAC,
+        setTotalUsersCount: setTotalUsersCountAC,
+        toggleIsFetching: toggleIsFetchingAC,
+    })(UsersC);
