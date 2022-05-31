@@ -3,7 +3,7 @@ import {ProfileStateType} from "../components/Profile/Profile";
 import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
 import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
-import {followAC, setUsersAC, unfollowAC} from "./usersReducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./usersReducer";
 
 export type StateType = {
     profilePage: ProfileStateType
@@ -29,6 +29,8 @@ export type ActionTypes =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
 
 export const store: StoreType = {
     _state: {

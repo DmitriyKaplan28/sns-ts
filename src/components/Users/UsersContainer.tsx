@@ -3,7 +3,15 @@ import {UsersC} from "./UsersC";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {followAC, setUsersAC, unfollowAC, UsersType, UserType} from "../../redux/usersReducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
+    UsersType,
+    UserType
+} from "../../redux/usersReducer";
 
 
 type UsersMapStateToPropsDialogsType = {
@@ -14,6 +22,8 @@ type UsersMapDispatchToPropsDialogsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     setUsers: (users: UserType[]) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 export type UsersPropsType = UsersMapStateToPropsDialogsType & UsersMapDispatchToPropsDialogsType
@@ -33,6 +43,12 @@ let mapDispatchToProps = (dispatch: Dispatch): UsersMapDispatchToPropsDialogsTyp
         },
         setUsers: (users: UserType[]) => {
             dispatch(setUsersAC(users))
+        },
+        setCurrentPage: (pageNumber: number) => {
+            dispatch(setCurrentPageAC(pageNumber))
+        },
+        setTotalUsersCount: (totalUsersCount: number) => {
+            dispatch(setTotalUsersCountAC(totalUsersCount))
         },
     }
 }
