@@ -1,10 +1,33 @@
-import React from "react";
+import React, {JSXElementConstructor} from "react";
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {setUserProfileAC} from "../../redux/profileReducer";
+//import {withRouter} from "react-router-dom";
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
+import {compose} from "redux";
 
+// wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
+export const WithRouter = (Component: JSXElementConstructor<any>): JSXElementConstructor<any> => {
+    function WithRouterPropComponent(props: any) {
+        let location = useLocation();
+        let navigate = useNavigate();
+        let params = useParams();
+        return (
+            <Component
+                {...props}
+                router={{location, navigate, params}}
+            />
+        );
+    }
+
+    return WithRouterPropComponent;
+}
 export type ProfileType = {
     aboutMe: string
     contacts: ContactsType
@@ -44,7 +67,13 @@ export type ProfileStateType = MapStateToPropsProfileType & MapDispatchToPropsPr
 export class ProfileC extends React.Component<ProfileStateType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+
+        // @ts-ignore
+        let userId = Number(this.props.router.params.userId);
+        if (!userId && this.props.profile) {
+            // @ts-ignore
+            userId = this.props.authorizedUserId;}
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data);
             });
@@ -62,12 +91,6 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
     profile: state.profilePage.profile
 })
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile: setUserProfileAC})(ProfileC);
 
 
-/*
-export const ProfileContainer = connect(mapStateToProps,
-    {
-        setUserProfile: setUserProfileAC
-    })(ProfileC);
-*/
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {setUserProfile: setUserProfileAC}), WithRouter)(ProfileC);
