@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import {UsersType, UserType} from "../../redux/usersReducer";
+import {UsersType} from "../../redux/usersReducer";
+import {NavLink} from "react-router-dom";
+import classes from "../Navbar/Navbar.module.css";
 
 type UsersFunctionalPropsType = {
     usersState: UsersType
@@ -29,8 +31,10 @@ export const UsersFunctional = (props: UsersFunctionalPropsType) => {
             props.usersState.users.map(u => <div key={u.id}>
                     <span>
                         <div>
+                            <NavLink to={"/profile" + u.id} className={navData=>navData.isActive ? classes.active:classes.item}>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
-                        </div>
+                        </NavLink>
+                            </div>
                         <div>
                             {u.followed ? <button onClick={() => {
                                     props.unfollow(u.id)

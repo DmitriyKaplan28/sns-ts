@@ -1,18 +1,23 @@
 import {ActionTypes} from "./store";
-import {ProfileStateType} from "../components/Profile/Profile";
+
+import {ProfileType} from "../components/Profile/ProfileContainer";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
-let initialState: ProfileStateType = {
+let initialState = {
     posts: [
         {id: "1", post: "Hi how are you", like: '10 likes'},
         {id: "2", post: "my first post", like: '5 likes'}
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null as null | ProfileType
 }
 
-export const profileReducer = (state: ProfileStateType = initialState, action: ActionTypes): ProfileStateType => {
+type InitialStateType = typeof initialState
+
+export const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -33,6 +38,9 @@ export const profileReducer = (state: ProfileStateType = initialState, action: A
                 newPostText: action.newText
             };
 
+        case SET_USER_PROFILE:
+            return {...state, profile: action.profile }
+
         default:
             return state;
     }
@@ -49,5 +57,12 @@ export const updateNewPostTextAC = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newText
+    } as const
+}
+
+export const setUserProfileAC = (profile:ProfileType | null) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile,
     } as const
 }

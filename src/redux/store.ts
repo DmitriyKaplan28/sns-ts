@@ -1,8 +1,7 @@
-import React from 'react';
-import {ProfileStateType} from "../components/Profile/Profile";
+
 import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
-import {addPostAC, profileReducer, updateNewPostTextAC} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC,  setUserProfileAC, updateNewPostTextAC} from "./profileReducer";
+import { sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {
     followAC,
     setCurrentPageAC,
@@ -11,6 +10,7 @@ import {
     toggleIsFetchingAC,
     unfollowAC
 } from "./usersReducer";
+import {ProfileStateType} from "../components/Profile/ProfileContainer";
 
 export type StateType = {
     profilePage: ProfileStateType
@@ -39,7 +39,9 @@ export type ActionTypes =
     | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof setUserProfileAC>
 
+/*
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -85,4 +87,4 @@ export const store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._callSubscriber()
     }
-}
+}*/

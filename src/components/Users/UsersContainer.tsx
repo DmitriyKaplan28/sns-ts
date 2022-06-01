@@ -16,11 +16,11 @@ import {UsersFunctional} from "./UsersFunctional";
 import {Preloader} from "../common/Preloader";
 
 
-type UsersMapStateToPropsDialogsType = {
+type UsersMapStateToPropsType = {
     usersState: UsersType
 }
 
-type UsersMapDispatchToPropsDialogsType = {
+type UsersMapDispatchToPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     setUsers: (users: UserType[]) => void
@@ -29,7 +29,7 @@ type UsersMapDispatchToPropsDialogsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export type UsersPropsType = UsersMapStateToPropsDialogsType & UsersMapDispatchToPropsDialogsType
+export type UsersPropsType = UsersMapStateToPropsType & UsersMapDispatchToPropsType
 
 export class UsersC extends React.Component<UsersPropsType> {
 
@@ -65,7 +65,7 @@ export class UsersC extends React.Component<UsersPropsType> {
 }
 
 
-let mapStateToProps = (state: AppStateType): UsersMapStateToPropsDialogsType => {
+let mapStateToProps = (state: AppStateType): UsersMapStateToPropsType => {
     return {
         usersState: state.usersPage
     }
