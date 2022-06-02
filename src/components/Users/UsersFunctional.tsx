@@ -31,7 +31,7 @@ export const UsersFunctional = (props: UsersFunctionalPropsType) => {
             props.usersState.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <NavLink to={"/profile" + u.id} className={navData=>navData.isActive ? classes.active:classes.item}>
+                            <NavLink to={"/profile/" + u.id} className={navData=>navData.isActive ? classes.active:classes.item}>
                         <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}/>
                         </NavLink>
                             </div>

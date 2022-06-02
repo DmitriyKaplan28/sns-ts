@@ -4,7 +4,6 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {setUserProfileAC} from "../../redux/profileReducer";
-//import {withRouter} from "react-router-dom";
 import {
     useLocation,
     useNavigate,
@@ -28,6 +27,8 @@ export const WithRouter = (Component: JSXElementConstructor<any>): JSXElementCon
 
     return WithRouterPropComponent;
 }
+
+
 export type ProfileType = {
     aboutMe: string
     contacts: ContactsType
@@ -60,24 +61,27 @@ type MapStateToPropsProfileType = {
 
 type MapDispatchToPropsProfileType = {
     setUserProfile: (profile: ProfileType) => void
+
 }
 
 export type ProfileStateType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 
 export class ProfileC extends React.Component<ProfileStateType> {
 
-    componentDidMount() {
+
+    componentDidMount(): void {
 
         // @ts-ignore
         let userId = Number(this.props.router.params.userId);
-        if (!userId && this.props.profile) {
-            // @ts-ignore
-            userId = this.props.authorizedUserId;}
+        // if (!userId ) {
+        //     // @ts-ignore
+        //     userId = this.props.profile.userId;}
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setUserProfile(response.data);
             });
     }
+
 
     render() {
         return (
@@ -93,4 +97,4 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
 
 
 
-export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {setUserProfile: setUserProfileAC}), WithRouter)(ProfileC);
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {setUserProfile: setUserProfileAC/*, setFetching*/}), WithRouter)(ProfileC);
