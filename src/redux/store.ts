@@ -7,7 +7,7 @@ import {
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
-    toggleIsFetchingAC,
+    toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unfollowAC
 } from "./usersReducer";
 import {ProfileStateType} from "../components/Profile/ProfileContainer";
@@ -42,6 +42,7 @@ export type ActionTypes =
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setUserDataAC>
+    | ReturnType<typeof toggleIsFollowingProgressAC>
 
 /*
 export const store: StoreType = {

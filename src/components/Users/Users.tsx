@@ -5,14 +5,14 @@ import axios from "axios";
 import userPhoto from '../../assets/images/user.png'
 
 export const Users = (props: UsersPropsType) => {
-   const getUsers = () => {
-       if (props.usersState.users.length === 0) {
+    const getUsers = () => {
+        if (props.usersState.users.length === 0) {
 
-           axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-               props.setUsers(response.data.items)
-           })
-       }
-   }
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
+    }
 
     return (
         <div>
@@ -25,8 +25,7 @@ export const Users = (props: UsersPropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
-
+                                ? <button  onClick={() => {
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -37,13 +36,14 @@ export const Users = (props: UsersPropsType) => {
                                             if (response.data.resultCode == 0) {
                                                 props.unfollow(u.id)
                                             }
+
                                         })
 
 
-
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},{
+                                : <button  onClick={() => {
+
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
                                             "API-KEY": "3d16c705-9d76-4149-af9f-e3f3ed45edd2"
@@ -53,6 +53,7 @@ export const Users = (props: UsersPropsType) => {
                                             if (response.data.resultCode == 0) {
                                                 props.follow(u.id)
                                             }
+
                                         })
 
                                 }}>Follow</button>}

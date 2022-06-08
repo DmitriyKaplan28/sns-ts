@@ -6,7 +6,7 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
+    setUsersAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unfollowAC,
     UsersType,
     UserType
@@ -27,6 +27,7 @@ type UsersMapDispatchToPropsType = {
     setCurrentPage: (pageNumber: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleIsFollowingProgress:(isFetching: boolean, id: number) => void
 }
 
 export type UsersPropsType = UsersMapStateToPropsType & UsersMapDispatchToPropsType
@@ -60,6 +61,7 @@ export class UsersC extends React.Component<UsersPropsType> {
                              unfollow={this.props.unfollow}
                              setCurrentPage={this.props.setCurrentPage}
                              onPageChanged={this.onPageChanged}
+                             toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             />;
         </>
     }
@@ -80,4 +82,5 @@ export const UsersContainer = connect(mapStateToProps,
         setCurrentPage: setCurrentPageAC,
         setTotalUsersCount: setTotalUsersCountAC,
         toggleIsFetching: toggleIsFetchingAC,
+        toggleIsFollowingProgress: toggleIsFollowingProgressAC,
     })(UsersC);
