@@ -11,6 +11,7 @@ import {
     unfollowAC
 } from "./usersReducer";
 import {ProfileStateType} from "../components/Profile/ProfileContainer";
+import {setUserDataAC} from "./authReducer";
 
 export type StateType = {
     profilePage: ProfileStateType
@@ -40,6 +41,7 @@ export type ActionTypes =
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setUserDataAC>
 
 /*
 export const store: StoreType = {
