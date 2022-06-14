@@ -70,7 +70,6 @@ export const UsersFunctional = (props: UsersFunctionalPropsType) => {
                                             }
                                             props.toggleIsFollowingProgress(false, u.id)
                                         })
-
                                 }}>Follow</button>}
                         </div>
                     </span>

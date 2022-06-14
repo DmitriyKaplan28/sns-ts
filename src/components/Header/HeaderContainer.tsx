@@ -18,7 +18,6 @@ type MapDispatchToPropsType = {
 
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchToPropsType
 
-
 class HeaderC extends React.Component<HeaderContainerPropsType> {
 
     componentDidMount() {
@@ -44,6 +43,5 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login,
 });
-
 
 export const HeaderContainer = compose<React.ComponentType>(connect(mapStateToProps, {setUserData: setUserDataAC}))(HeaderC);

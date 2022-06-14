@@ -28,5 +28,4 @@ function App(props: AppStateType) {
         </div>
     );
 }
-
 export default App;
