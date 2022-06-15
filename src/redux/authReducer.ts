@@ -1,4 +1,6 @@
 import {ActionTypes} from "./store";
+import {authAPI} from "../api/api";
+import { ThunkDispatchType, ThunkType} from "./usersReducer";
 const SET_USER_DATA = 'SET-USER-DATA'
 
 
@@ -33,6 +35,19 @@ export const setUserDataAC = (userId: number, email: string, login: string) => {
         type: SET_USER_DATA,
         data: {userId, email, login}
     } as const
+}
+
+export const getAuthUserDataThunkCreator = (): ThunkType => {
+    return (dispatch: ThunkDispatchType) => {
+
+        authAPI.me().then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+                dispatch(setUserDataAC(id, email, login));
+            }
+        })
+
+    }
 }
 
 

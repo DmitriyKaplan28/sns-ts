@@ -1,15 +1,16 @@
 import React, {JSXElementConstructor} from "react";
 import {Profile} from "./Profile";
-import axios from "axios";
+
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {setUserProfileAC} from "../../redux/profileReducer";
+import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
 import {compose} from "redux";
+
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
 export const WithRouter = (Component: JSXElementConstructor<any>): JSXElementConstructor<any> => {
@@ -60,7 +61,8 @@ type MapStateToPropsProfileType = {
 }
 
 type MapDispatchToPropsProfileType = {
-    setUserProfile: (profile: ProfileType) => void
+
+    getUserProfile: (userId: number) => void
 
 }
 
@@ -72,14 +74,7 @@ export class ProfileC extends React.Component<ProfileStateType> {
     componentDidMount(): void {
 
         // @ts-ignore
-        let userId = Number(this.props.router.params.userId);
-        // if (!userId ) {
-        //     // @ts-ignore
-        //     userId = this.props.profile.userId;}
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setUserProfile(response.data);
-            });
+        this.props.getUserProfile(Number(this.props.router.params.userId))
     }
 
 
@@ -97,4 +92,4 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
 
 
 
-export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {setUserProfile: setUserProfileAC/*, setFetching*/}), WithRouter)(ProfileC);
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(ProfileC);

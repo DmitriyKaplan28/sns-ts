@@ -1,6 +1,8 @@
 import {ActionTypes} from "./store";
 
 import {ProfileType} from "../components/Profile/ProfileContainer";
+import {usersAPI} from "../api/api";
+import { ThunkDispatchType, ThunkType} from "./usersReducer";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -65,4 +67,15 @@ export const setUserProfileAC = (profile:ProfileType | null) => {
         type: SET_USER_PROFILE,
         profile,
     } as const
+}
+
+export const getUserProfileThunkCreator = (userId: number): ThunkType => {
+    return (dispatch: ThunkDispatchType) => {
+        usersAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfileAC(response.data));
+            });
+
+
+    }
 }
