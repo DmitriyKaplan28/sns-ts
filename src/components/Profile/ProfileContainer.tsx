@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {
+    Navigate,
     useLocation,
     useNavigate,
     useParams,
@@ -58,6 +59,7 @@ export type PhotosType = {
 
 type MapStateToPropsProfileType = {
     profile: ProfileType | null
+    isAuth: boolean
 }
 
 type MapDispatchToPropsProfileType = {
@@ -79,6 +81,8 @@ export class ProfileC extends React.Component<ProfileStateType> {
 
 
     render() {
+
+        if (!this.props.isAuth) return <Navigate replace to={'/login'}/>
         return (
             <Profile {...this.props}
             profile={this.props.profile}/>
@@ -87,7 +91,8 @@ export class ProfileC extends React.Component<ProfileStateType> {
 }
 
 let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    isAuth: state.auth.isAuth
 })
 
 

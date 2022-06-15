@@ -3,12 +3,14 @@ import classes from './Dialogs.module.css';
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogsStateType} from "./DialogsContainer";
+import {Navigate} from "react-router-dom";
 
 
 type DialogsPropsType = {
     dialogsState: DialogsStateType
-    sendMessage: ()=> void
-    newMessage: (messageBody: string)=> void
+    sendMessage: () => void
+    newMessage: (messageBody: string) => void
+    isAuth: boolean
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -22,30 +24,32 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.sendMessage()
     }
 
-    const newMessageOnChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const newMessageOnChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let newMessageBody = e.currentTarget.value
         props.newMessage(newMessageBody)
     }
 
-    return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
+    if (!props.isAuth) return <Navigate replace to={'/login'} />
 
-                {dialogsElements}
+        return (
+            <div className={classes.dialogs}>
+                <div className={classes.dialogsItems}>
 
-            </div>
-            <div className={classes.messages}>
+                    {dialogsElements}
 
-                <div>{messagesElements}</div>
-                <div>
-                    <div><textarea value={props.dialogsState.newMessageBody}
-                                   onChange={newMessageOnChange}
-                                   placeholder='Enter your message'></textarea></div>
+                </div>
+                <div className={classes.messages}>
+
+                    <div>{messagesElements}</div>
                     <div>
-                        <button onClick={sendMessageOnClick}>Send</button>
+                        <div><textarea value={props.dialogsState.newMessageBody}
+                                       onChange={newMessageOnChange}
+                                       placeholder='Enter your message'></textarea></div>
+                        <div>
+                            <button onClick={sendMessageOnClick}>Send</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        )
 }

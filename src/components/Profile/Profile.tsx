@@ -6,13 +6,16 @@ import {ProfileType} from "./ProfileContainer";
 
 export type ProfilePropsType = {
     profile: ProfileType | null
+
 }
 
 export const Profile = (props: ProfilePropsType) => {
+
+
     return (
         <div>
             <ProfileInfo profile={props.profile}/>
-            <MyPostsContainer />
+            <MyPostsContainer/>
         </div>
     );
 }
