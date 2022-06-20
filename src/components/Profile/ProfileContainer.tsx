@@ -11,6 +11,8 @@ import {
     useParams,
 } from "react-router-dom";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {Dialogs} from "../Dialogs/Dialogs";
 
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
@@ -59,8 +61,10 @@ export type PhotosType = {
 
 type MapStateToPropsProfileType = {
     profile: ProfileType | null
-    isAuth: boolean
+    //isAuth: boolean
 }
+
+
 
 type MapDispatchToPropsProfileType = {
 
@@ -82,7 +86,7 @@ export class ProfileC extends React.Component<ProfileStateType> {
 
     render() {
 
-        if (!this.props.isAuth) return <Navigate replace to={'/login'}/>
+
         return (
             <Profile {...this.props}
             profile={this.props.profile}/>
@@ -90,11 +94,20 @@ export class ProfileC extends React.Component<ProfileStateType> {
     }
 }
 
+
+let AuthRedirectComponent = withAuthRedirect(ProfileC)
+/*let AuthRedirectComponent = (props:ProfileStateType) => {
+    if (!props.isAuth) return <Navigate replace to={'/login'}/>
+    return <ProfileC {...props}/>
+}*/
+
+
+
 let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    //isAuth: state.auth.isAuth
 })
 
 
 
-export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(ProfileC);
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(AuthRedirectComponent/*ProfileC*/);

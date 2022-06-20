@@ -6,7 +6,7 @@ import {DialogsStateType} from "./DialogsContainer";
 import {Navigate} from "react-router-dom";
 
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     dialogsState: DialogsStateType
     sendMessage: () => void
     newMessage: (messageBody: string) => void
@@ -29,7 +29,7 @@ export const Dialogs = (props: DialogsPropsType) => {
         props.newMessage(newMessageBody)
     }
 
-    if (!props.isAuth) return <Navigate replace to={'/login'} />
+    //if (!props.isAuth) return <Navigate replace to={'/login'} />
 
         return (
             <div className={classes.dialogs}>
