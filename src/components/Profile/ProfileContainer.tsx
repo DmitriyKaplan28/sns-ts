@@ -5,14 +5,12 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfileThunkCreator} from "../../redux/profileReducer";
 import {
-    Navigate,
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {Dialogs} from "../Dialogs/Dialogs";
 
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
@@ -95,7 +93,7 @@ export class ProfileC extends React.Component<ProfileStateType> {
 }
 
 
-let AuthRedirectComponent = withAuthRedirect(ProfileC)
+//let AuthRedirectComponent = withAuthRedirect(ProfileC)
 /*let AuthRedirectComponent = (props:ProfileStateType) => {
     if (!props.isAuth) return <Navigate replace to={'/login'}/>
     return <ProfileC {...props}/>
@@ -110,4 +108,4 @@ let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
 
 
 
-export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(AuthRedirectComponent/*ProfileC*/);
+export const ProfileContainer = withAuthRedirect(compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(ProfileC));
