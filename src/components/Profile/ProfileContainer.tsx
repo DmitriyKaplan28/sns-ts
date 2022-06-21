@@ -3,14 +3,17 @@ import {Profile} from "./Profile";
 
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getUserProfileThunkCreator} from "../../redux/profileReducer";
+import {
+    getUserProfileThunkCreator,
+    getUserStatusThunkCreator,
+    updateUserStatusThunkCreator
+} from "../../redux/profileReducer";
 import {
     useLocation,
     useNavigate,
     useParams,
 } from "react-router-dom";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
@@ -59,14 +62,15 @@ export type PhotosType = {
 
 type MapStateToPropsProfileType = {
     profile: ProfileType | null
-    //isAuth: boolean
+    status: string
 }
-
 
 
 type MapDispatchToPropsProfileType = {
 
     getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
 
 }
 
@@ -76,9 +80,11 @@ export class ProfileC extends React.Component<ProfileStateType> {
 
 
     componentDidMount(): void {
+// @ts-ignore
+        let userId = this.props.router.params.userId
 
-        // @ts-ignore
-        this.props.getUserProfile(Number(this.props.router.params.userId))
+        this.props.getUserProfile(Number(userId));
+        this.props.getUserStatus(Number(userId))
     }
 
 
@@ -87,25 +93,22 @@ export class ProfileC extends React.Component<ProfileStateType> {
 
         return (
             <Profile {...this.props}
-            profile={this.props.profile}/>
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateUserStatus={this.props.updateUserStatus}/>
         );
     }
 }
 
 
-//let AuthRedirectComponent = withAuthRedirect(ProfileC)
-/*let AuthRedirectComponent = (props:ProfileStateType) => {
-    if (!props.isAuth) return <Navigate replace to={'/login'}/>
-    return <ProfileC {...props}/>
-}*/
-
-
-
-let mapStateToProps = (state: AppStateType):MapStateToPropsProfileType => ({
+let mapStateToProps = (state: AppStateType): MapStateToPropsProfileType => ({
     profile: state.profilePage.profile,
-    //isAuth: state.auth.isAuth
+    status: state.profilePage.status
 })
 
 
-
-export const ProfileContainer = withAuthRedirect(compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile:getUserProfileThunkCreator}), WithRouter)(ProfileC));
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {
+    getUserProfile: getUserProfileThunkCreator,
+    getUserStatus: getUserStatusThunkCreator,
+    updateUserStatus: updateUserStatusThunkCreator
+}), WithRouter)(ProfileC);
