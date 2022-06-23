@@ -14,6 +14,7 @@ import {
     useParams,
 } from "react-router-dom";
 import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
@@ -111,4 +112,4 @@ export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToP
     getUserProfile: getUserProfileThunkCreator,
     getUserStatus: getUserStatusThunkCreator,
     updateUserStatus: updateUserStatusThunkCreator
-}), WithRouter)(ProfileC);
+}), WithRouter, withAuthRedirect)(ProfileC);
