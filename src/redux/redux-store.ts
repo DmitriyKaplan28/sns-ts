@@ -4,7 +4,7 @@ import {dialogsReducer} from "./dialogsReducer";
 import {usersReducer} from "./usersReducer";
 import {authReducer} from "./authReducer";
 import thunkMiddleWare from 'redux-thunk';
-//import {reducer as formReducer} from 'redux-form'
+import formReducer from 'react-final-form'
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
