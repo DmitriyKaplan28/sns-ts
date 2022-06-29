@@ -2,6 +2,7 @@ import {ActionTypes} from "./store";
 import {usersAPI} from "../api/api";
 import {AppStateType} from "./redux-store";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {Action} from "redux";
 
 
 const FOLLOW = 'FOLLOW'
@@ -130,7 +131,7 @@ export const toggleIsFollowingProgressAC = (isFetching: boolean, userId: number)
 }
 
 
-export type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>
+export type ThunkType<A extends Action = Action> = ThunkAction<void, AppStateType, unknown, ActionTypes | A>
 export type ThunkDispatchType = ThunkDispatch<AppStateType, unknown, ActionTypes>
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number): ThunkType => {
