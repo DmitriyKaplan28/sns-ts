@@ -10,7 +10,7 @@ import {
     UsersType
 } from "../../redux/usersReducer";
 import {UsersFunctional} from "./UsersFunctional";
-import {Preloader} from "../common/Preloader";
+import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
