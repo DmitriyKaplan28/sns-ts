@@ -2,6 +2,10 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input} from "../common/FormControls/FormControls";
 import {requiredField} from "../../utils/validators/validators";
+import {connect} from "react-redux";
+import {loginThunkCreator} from "../../redux/authReducer";
+import {Navigate} from "react-router-dom";
+import {AppStateType} from "../../redux/redux-store";
 
 type FormDataType = {
     login: string
@@ -9,14 +13,26 @@ type FormDataType = {
     rememberMe: boolean
 }
 
+type MDTPLoginType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+type MSTPLoginType = {
+    isAuth: boolean
+    userId: number | null
+}
+
+type LoginPropsType = MDTPLoginType & MSTPLoginType
+
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={'Login'} name={'login'} component={Input} validate={[requiredField]}/>
+                <Field placeholder={'email'} name={'login'} component={Input} validate={[requiredField]}/>
             </div>
             <div>
-                <Field placeholder={'Password'} name={'password'} component={Input} validate={[requiredField]}/>
+                <Field placeholder={'password'} name={'password'} type={'password'} component={Input}
+                       validate={[requiredField]}/>
             </div>
             <div>
                 <Field component={'input'} name={'rememberMe'} type={'checkbox'}/> remember me
@@ -30,10 +46,15 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-export const Login = () => {
+const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData);
+        props.login(formData.login, formData.password, formData.rememberMe)
     }
+
+    if (props.isAuth) {
+        return <Navigate replace to={`/profile/${props.userId}`}/>
+    }
+
     return (
         <div>
             <h1>Login</h1>
@@ -42,56 +63,9 @@ export const Login = () => {
     );
 };
 
+let mapStateToProps = (state: AppStateType): MSTPLoginType => ({
+    isAuth: state.auth.isAuth,
+    userId: state.auth.userId
+})
 
-
-
-
-
-
-
-/*
-import React from 'react';
-import { Form, Field } from 'react-final-form'
-
-export const Login = () => {
-    return <div>
-        <h1>
-            Login
-        </h1>
-        <LoginReduxForm/>
-    </div>;
-};
-
-export const LoginForm = () => {
-    return <form>
-        <div><input placeholder={'Login'}/></div>
-        <div><input placeholder={'Password'}/></div>
-        <div><input type={'checkbox'}/>remember me</div>
-        <div>
-            <button>Login</button>
-        </div>
-    </form>
-        ;
-};
-
-const LoginReduxForm = () => {
-    const onSubmit = () => {
-        console.log('123')
-    }
-    return <Form onSubmit={onSubmit}>
-        {props => (
-            <form onSubmit={props.handleSubmit}>
-                <div>
-                    <Field name="login" component="input" placeholder="Login" />
-                </div>
-                <div>
-                    <Field name="password" component="input" placeholder="Password" />
-                </div>
-                <div>
-                    <Field name='rememberMe' component="input" type="checkbox" />Remember me
-                </div>
-                <button>Login</button>
-            </form>
-        )}
-    </Form>
-}*/
+export default connect(mapStateToProps, {login: loginThunkCreator})(Login)

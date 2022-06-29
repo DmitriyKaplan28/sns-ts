@@ -68,17 +68,14 @@ type MapStateToPropsProfileType = {
 
 
 type MapDispatchToPropsProfileType = {
-
     getUserProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
     updateUserStatus: (status: string) => void
-
 }
 
 export type ProfileStateType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 
 export class ProfileC extends React.Component<ProfileStateType> {
-
 
     componentDidMount(): void {
 // @ts-ignore
@@ -88,10 +85,7 @@ export class ProfileC extends React.Component<ProfileStateType> {
         this.props.getUserStatus(Number(userId))
     }
 
-
     render() {
-
-
         return (
             <Profile {...this.props}
                      profile={this.props.profile}
@@ -101,12 +95,10 @@ export class ProfileC extends React.Component<ProfileStateType> {
     }
 }
 
-
 let mapStateToProps = (state: AppStateType): MapStateToPropsProfileType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status
 })
-
 
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {
     getUserProfile: getUserProfileThunkCreator,
