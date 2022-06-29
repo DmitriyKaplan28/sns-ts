@@ -1,7 +1,7 @@
 import React from 'react';
 import {DialogType} from "./Dialog/Dialog";
 import {MessageType} from "./Message/Message";
-import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {sendMessageAC} from "../../redux/dialogsReducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
@@ -11,7 +11,6 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 export type DialogsStateType = {
     dialogs: DialogType[]
     messages: MessageType[]
-    newMessageBody: string
 }
 
 type MapStateToPropsDialogsType = {
@@ -21,9 +20,10 @@ type MapStateToPropsDialogsType = {
 }
 
 type mapDispatchToPropsDialogsType = {
-    sendMessage: () => void
-    newMessage: (messageBody: string) => void
+    sendMessage: (newMessageBody: string) => void
 }
+
+export type DialogsPropsType = MapStateToPropsDialogsType & mapDispatchToPropsDialogsType
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsDialogsType => {
     return {
@@ -33,8 +33,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsDialogsType => {
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsDialogsType => {
     return {
-        sendMessage: () => {dispatch(sendMessageAC())},
-        newMessage: (messageBody: string) => {dispatch(updateNewMessageBodyAC(messageBody))},
+        sendMessage: (newMessageBody: string) => {dispatch(sendMessageAC(newMessageBody))},
     }
 }
 

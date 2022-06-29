@@ -14,10 +14,8 @@ let rootReducer = combineReducers({
     form: formReducer,
 });
 
-
 export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleWare));
 
-export type ReduxStoreType = typeof store
 
 export type AppStateType = ReturnType<typeof rootReducer>;
 
