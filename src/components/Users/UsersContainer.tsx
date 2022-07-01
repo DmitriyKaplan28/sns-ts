@@ -56,7 +56,6 @@ export class UsersC extends React.Component<UsersPropsType> {
     }
 }
 
-
 let mapStateToProps = (state: AppStateType): UsersMapStateToPropsType => {
     return {
         usersState: state.usersPage
