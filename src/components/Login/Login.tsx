@@ -13,11 +13,9 @@ type FormDataType = {
     password: string
     rememberMe: boolean
 }
-
 type MDTPLoginType = {
     login: (email: string, password: string, rememberMe: boolean) => void
 }
-
 type MSTPLoginType = {
     isAuth: boolean
     userId: number | null

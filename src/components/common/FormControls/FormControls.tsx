@@ -7,7 +7,6 @@ type FormControlPropsType = {
 }
 
 export const FormControl: FC<FormControlPropsType> = ({meta: {touched, error}, children}) => {
-
     const errorCondition = touched && error
     return (
         <div className={styles.formControl + ' ' + (errorCondition ? styles.error : '')}>
