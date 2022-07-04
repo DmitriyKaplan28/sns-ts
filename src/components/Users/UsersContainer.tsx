@@ -12,6 +12,7 @@ import {
 import {UsersFunctional} from "./UsersFunctional";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
+import {getUsersPage} from "../../redux/usersSelector";
 
 
 type UsersMapStateToPropsType = {
@@ -21,9 +22,7 @@ type UsersMapStateToPropsType = {
 type UsersMapDispatchToPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
-
     setCurrentPage: (pageNumber: number) => void
-
     toggleIsFollowingProgress: (isFetching: boolean, id: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
@@ -57,7 +56,7 @@ export class UsersC extends React.Component<UsersPropsType> {
 
 let mapStateToProps = (state: AppStateType): UsersMapStateToPropsType => {
     return {
-        usersState: state.usersPage
+        usersState: getUsersPage(state)
     }
 }
 
