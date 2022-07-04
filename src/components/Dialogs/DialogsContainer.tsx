@@ -6,7 +6,6 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 export type DialogsStateType = {
     dialogs: DialogType[]
@@ -37,14 +36,4 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsDialogsType => 
     }
 }
 
-
-
-//let AuthRedirectComponent = withAuthRedirect(Dialogs)
-
- /*   (props:DialogsPropsType) => {
-    if (!props.isAuth) return <Navigate replace to={'/login'}/>
-    return <Dialogs {...props}/>
-}*/
-
-
-export const DialogsContainer = compose<React.ComponentType>(connect(mapStateToProps,mapDispatchToProps),withAuthRedirect)(Dialogs)
+export const DialogsContainer = compose<React.ComponentType>(connect(mapStateToProps,mapDispatchToProps))(Dialogs)

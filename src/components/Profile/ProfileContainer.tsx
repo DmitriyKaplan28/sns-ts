@@ -9,6 +9,7 @@ import {
     updateUserStatusThunkCreator
 } from "../../redux/profileReducer";
 import {
+    RouteProps,
     useLocation,
     useNavigate,
     useParams,
@@ -75,12 +76,19 @@ type MapDispatchToPropsProfileType = {
 
 export type ProfileStateType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
 
-export class ProfileC extends React.Component<ProfileStateType> {
+export class ProfileC extends React.Component<ProfileStateType & RouteProps> {
 
     componentDidMount(): void {
 // @ts-ignore
         let userId = this.props.router.params.userId
 
+        if (!userId) {
+            userId = this.props.profile?.userId.toString() as string
+           /* let navigate = useNavigate()
+            if (!userId) {
+                navigate('/login');
+            }*/
+        }
         this.props.getUserProfile(Number(userId));
         this.props.getUserStatus(Number(userId))
     }
