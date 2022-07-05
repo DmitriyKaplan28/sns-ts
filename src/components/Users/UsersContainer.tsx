@@ -12,7 +12,7 @@ import {
 import {UsersFunctional} from "./UsersFunctional";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
-import {getUsersPage} from "../../redux/usersSelector";
+import { getUsersPageSuperSelector} from "../../redux/usersSelector";
 
 
 type UsersMapStateToPropsType = {
@@ -56,7 +56,7 @@ export class UsersC extends React.Component<UsersPropsType> {
 
 let mapStateToProps = (state: AppStateType): UsersMapStateToPropsType => {
     return {
-        usersState: getUsersPage(state)
+        usersState: getUsersPageSuperSelector(state)
     }
 }
 
