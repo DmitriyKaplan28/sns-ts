@@ -17,7 +17,6 @@ import {
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-
 // wrapper to use react router's v6 hooks in class component(to use HOC pattern, like in router v5)
 export const WithRouter = (Component: JSXElementConstructor<any>): JSXElementConstructor<any> => {
     function WithRouterPropComponent(props: any) {
@@ -34,7 +33,6 @@ export const WithRouter = (Component: JSXElementConstructor<any>): JSXElementCon
 
     return WithRouterPropComponent;
 }
-
 
 export type ProfileType = {
     aboutMe: string
@@ -67,7 +65,6 @@ type MapStateToPropsProfileType = {
     status: string
 }
 
-
 type MapDispatchToPropsProfileType = {
     getUserProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
@@ -84,10 +81,6 @@ export class ProfileC extends React.Component<ProfileStateType & RouteProps> {
 
         if (!userId) {
             userId = this.props.profile?.userId.toString() as string
-           /* let navigate = useNavigate()
-            if (!userId) {
-                navigate('/login');
-            }*/
         }
         this.props.getUserProfile(Number(userId));
         this.props.getUserStatus(Number(userId))
