@@ -32,7 +32,6 @@ export type UsersPropsType = UsersMapStateToPropsType & UsersMapDispatchToPropsT
 export class UsersC extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-
         this.props.getUsers(this.props.usersState.currentPage, this.props.usersState.pageSize)
     }
 
