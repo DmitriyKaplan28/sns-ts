@@ -29,7 +29,6 @@ class App extends React.Component<AppType> {
         this.props.initializeTC()
     }
 
-
     render() {
         if (!this.props.initialized) {
             return <Preloader/>
@@ -54,7 +53,5 @@ class App extends React.Component<AppType> {
 }const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     initialized: state.app.initialized
 })
-
-
 
 export default compose<React.ComponentType>(connect(mapStateToProps, { initializeTC}), WithRouter)(App);

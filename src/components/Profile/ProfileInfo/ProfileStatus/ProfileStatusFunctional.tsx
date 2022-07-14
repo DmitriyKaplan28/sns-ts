@@ -5,7 +5,6 @@ type ProfileStatusType = {
     updateUserStatus: (status: string) => void
 }
 
-
 export const ProfileStatusFunctional = (props: ProfileStatusType) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
