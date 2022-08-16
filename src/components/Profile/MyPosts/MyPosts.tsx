@@ -12,33 +12,38 @@ type MyPostsType = {
     updateNewPostText: (newText: string) => void
 }
 
-export const MyPosts = (props: MyPostsType) => {
-
-    let postsElements = props?.posts?.map((post) =>
-        <Post post={post.post} like={post.like}/>
-    )
-
-    const addPost = (formData: FormDataType) => {
-        props.addPost(formData.newPostText)
-    }
-
-    return (
-
-        <div className={classes.postsBlock}>
-            <h3>My posts</h3>
-            <div>
-                <AddPostReduxForm onSubmit={addPost}/>
-            </div>
-            <div className={classes.post}>
-                {postsElements}
-            </div>
-        </div>
-    );
-}
-
 type FormDataType = {
     newPostText: string
 }
+
+export const MyPosts = React.memo((props:MyPostsType) => {
+
+    /*shouldComponentUpdate(nextProps: Readonly<MyPostsType>, nextState: Readonly<{}>): boolean {
+        return this.props !== nextProps || this.state !== nextState;
+    }*/
+
+        let postsElements = props?.posts?.map((post) =>
+            <Post post={post.post} like={post.like}/>
+        )
+
+        const addPost = (formData: FormDataType) => {
+            props.addPost(formData.newPostText)
+        }
+
+        return (
+
+            <div className={classes.postsBlock}>
+                <h3>My posts</h3>
+                <div>
+                    <AddPostReduxForm onSubmit={addPost}/>
+                </div>
+                <div className={classes.post}>
+                    {postsElements}
+                </div>
+            </div>
+        );
+})
+
 const maxLength10 = maxLengthCreator(10)
 
 const AddPostForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {

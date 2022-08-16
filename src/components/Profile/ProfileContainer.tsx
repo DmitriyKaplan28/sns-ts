@@ -1,6 +1,5 @@
 import React, {JSXElementConstructor} from "react";
 import {Profile} from "./Profile";
-
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
