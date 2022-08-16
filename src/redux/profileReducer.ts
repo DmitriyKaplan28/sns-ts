@@ -2,7 +2,7 @@ import {ActionTypes} from "./store";
 
 import {ProfileType} from "../components/Profile/ProfileContainer";
 import {profileAPI} from "../api/api";
-import { ThunkDispatchType, ThunkType} from "./usersReducer";
+import {ThunkDispatchType, ThunkType} from "./usersReducer";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -35,7 +35,6 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 newPostText: ''
             };
 
-
         case UPDATE_NEW_POST_TEXT:
             return {
                 ...state,
@@ -43,7 +42,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             };
 
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile };
+            return {...state, profile: action.profile};
 
         case SET_STATUS:
             return {
@@ -70,7 +69,7 @@ export const updateNewPostTextAC = (newText: string) => {
     } as const
 }
 
-export const setUserProfileAC = (profile:ProfileType | null) => {
+export const setUserProfileAC = (profile: ProfileType | null) => {
     return {
         type: SET_USER_PROFILE,
         profile,
@@ -106,7 +105,7 @@ export const updateUserStatusThunkCreator = (status: string): ThunkType => {
     return (dispatch: ThunkDispatchType) => {
         profileAPI.updateStatus(status)
             .then(response => {
-                if(response.data.resultCode === 0) {
+                if (response.data.resultCode === 0) {
                     dispatch(setStatusAC(status))
                 }
             });

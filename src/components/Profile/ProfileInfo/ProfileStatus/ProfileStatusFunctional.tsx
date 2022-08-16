@@ -16,6 +16,7 @@ export const ProfileStatusFunctional = (props: ProfileStatusType) => {
     const editModeChange = () => {
         setEditMode(!editMode)
     }
+
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
         props.updateUserStatus(status)

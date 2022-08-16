@@ -5,7 +5,6 @@ type ProfileStatusType = {
     updateUserStatus: (status: string) => void
 }
 
-
 export class ProfileStatus extends React.Component<ProfileStatusType> {
 
     state = {

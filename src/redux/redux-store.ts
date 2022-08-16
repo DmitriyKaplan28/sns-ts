@@ -10,7 +10,7 @@ import {appReducer} from "./appReducer";
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage:usersReducer,
+    usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
     app: appReducer
