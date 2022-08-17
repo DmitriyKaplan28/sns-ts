@@ -8,6 +8,7 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const DELETE_POST = 'DELETE-POST'
 
 let initialState = {
     posts: [
@@ -34,6 +35,8 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 posts: [...state.posts, newPost],
                 newPostText: ''
             };
+        case DELETE_POST:
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
 
         case UPDATE_NEW_POST_TEXT:
             return {
@@ -59,6 +62,13 @@ export const addPostAC = (newPostText: string) => {
     return {
         type: ADD_POST,
         newPostText: newPostText
+    } as const
+}
+
+export const deletePostAC = (postId: string) => {
+    return {
+        type: DELETE_POST,
+        postId
     } as const
 }
 

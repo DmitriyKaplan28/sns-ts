@@ -1,5 +1,5 @@
 import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
-import {addPostAC, setStatusAC, setUserProfileAC, updateNewPostTextAC} from "./profileReducer";
+import {addPostAC, deletePostAC, setStatusAC, setUserProfileAC, updateNewPostTextAC} from "./profileReducer";
 import {sendMessageAC} from "./dialogsReducer";
 import {
     followAC,
@@ -44,6 +44,7 @@ export type ActionTypes =
     | ReturnType<typeof toggleIsFollowingProgressAC>
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setInitializedAC>
+    | ReturnType<typeof deletePostAC>
 
 /*
 export const store: StoreType = {
