@@ -30,10 +30,13 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsDialogsType => {
         isAuth: state.auth.isAuth
     }
 }
+
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsDialogsType => {
     return {
-        sendMessage: (newMessageBody: string) => {dispatch(sendMessageAC(newMessageBody))},
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessageAC(newMessageBody))
+        },
     }
 }
 
-export const DialogsContainer = compose<React.ComponentType>(connect(mapStateToProps,mapDispatchToProps))(Dialogs)
+export const DialogsContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(Dialogs)
