@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from "../common/FormControls/FormControls";
+import {InjectedFormProps, reduxForm} from 'redux-form';
+import {createField, Input} from "../common/FormControls/FormControls";
 import {requiredField} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/authReducer";
@@ -23,21 +23,15 @@ type MSTPLoginType = {
 
 type LoginPropsType = MDTPLoginType & MSTPLoginType
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'email'} name={'login'} component={Input} validate={[requiredField]}/>
-            </div>
-            <div>
-                <Field placeholder={'password'} name={'password'} type={'password'} component={Input}
-                       validate={[requiredField]}/>
-            </div>
-            <div>
-                <Field component={'input'} name={'rememberMe'} type={'checkbox'}/> remember me
-            </div>
-            {props.error && <div className={style.formAllError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+            {createField('email', 'login', Input, [requiredField])}
+            {createField('password', 'password', Input, [requiredField], {type: 'password'})}
+            {createField(null, 'rememberMe', Input, [], {type: 'checkbox'}, 'remember me')}
+
+            {error && <div className={style.formAllError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>

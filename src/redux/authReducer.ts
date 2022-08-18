@@ -3,7 +3,7 @@ import {authAPI} from "../api/api";
 import {ThunkDispatchType, ThunkType} from "./usersReducer";
 import {FormAction, stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'SET-USER-DATA'
+const SET_USER_DATA = 'AUTH/SET-USER-DATA'
 
 export type AuthPropsType = {
     userId: number | null
@@ -37,34 +37,30 @@ export const setUserDataAC = (userId: number | null, email: string | null, login
 }
 
 export const getAuthUserDataThunkCreator = (): ThunkType => {
-    return (dispatch: ThunkDispatchType) => {
-        authAPI.me().then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data
-                dispatch(setUserDataAC(id, email, login, true));
-            }
-        })
-
+    return async (dispatch: ThunkDispatchType) => {
+        let response = await authAPI.me()
+        if (response.data.resultCode === 0) {
+            let {id, email, login} = response.data.data
+            dispatch(setUserDataAC(id, email, login, true));
+        }
     }
 }
 
-export const loginThunkCreator = (email: string, password: string, rememberMe: boolean = false): ThunkType<FormAction> => dispatch => {
-    authAPI.login(email, password, rememberMe).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(getAuthUserDataThunkCreator())
-        } else {
-            let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-            dispatch(stopSubmit('login', {_error: message}))
-        }
-    })
+export const loginThunkCreator = (email: string, password: string, rememberMe: boolean = false): ThunkType<FormAction> => async dispatch => {
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserDataThunkCreator())
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+        dispatch(stopSubmit('login', {_error: message}))
+    }
 }
 
 export const logoutThunkCreator = (): ThunkType => {
-    return (dispatch: ThunkDispatchType) => {
-        authAPI.logout().then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserDataAC(null, null, null, false))
-            }
-        })
+    return async (dispatch: ThunkDispatchType) => {
+        let response = await authAPI.logout()
+        if (response.data.resultCode === 0) {
+            dispatch(setUserDataAC(null, null, null, false))
+        }
     }
 }

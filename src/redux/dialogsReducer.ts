@@ -1,7 +1,7 @@
 import {ActionTypes} from "./store";
 import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
 
-const SEND_MESSAGE = 'SEND-MESSAGE'
+const SEND_MESSAGE = 'DIALOGS/SEND-MESSAGE'
 
 let initialState: DialogsStateType = {
     dialogs: [
