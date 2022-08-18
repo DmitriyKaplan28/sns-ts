@@ -8,10 +8,10 @@ import {
     unfollowThunkCreator,
     UsersType
 } from "../../redux/usersReducer";
-import {UsersFunctional} from "./UsersFunctional";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import { getUsersPageSuperSelector} from "../../redux/usersSelector";
+import {Users} from "./Users";
 
 
 type UsersMapStateToPropsType = {
@@ -41,12 +41,12 @@ export class UsersC extends React.Component<UsersPropsType> {
     render() {
         return <>
             {this.props.usersState.isFetching ? <Preloader/> : null}
-            <UsersFunctional usersState={this.props.usersState}
-                             follow={this.props.follow}
-                             unfollow={this.props.unfollow}
-                             setCurrentPage={this.props.setCurrentPage}
-                             onPageChanged={this.onPageChanged}
-                             toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
+            <Users usersState={this.props.usersState}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
+                   setCurrentPage={this.props.setCurrentPage}
+                   onPageChanged={this.onPageChanged}
+                   toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
             />;
         </>
     }
