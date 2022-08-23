@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import { UserType} from "../../redux/usersReducer";
+import {UserType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
 import classes from "../Navbar/Navbar.module.css";
 
@@ -20,7 +20,8 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                         <div>
                             <NavLink to={"/profile/" + user.id}
                                      className={navData => navData.isActive ? classes.active : classes.item}>
-                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.userPhoto}
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto}
+                             className={styles.userPhoto}
                              alt={'user photo'}/>
                         </NavLink>
                             </div>
@@ -36,7 +37,7 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                                           }}>Follow</button>}
                         </div>
                     </span>
-                <span>
+        <span>
                        <span>
                            <div>{user.name}</div><div>{user.status}</div>
                        </span>
@@ -45,6 +46,6 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                             <div>{'u.location.city'}</div>
                         </span>
                     </span>
-            </div>
+    </div>
 }
 

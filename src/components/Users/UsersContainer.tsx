@@ -10,7 +10,7 @@ import {
 } from "../../redux/usersReducer";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
-import { getUsersPageSuperSelector} from "../../redux/usersSelector";
+import {getUsersPageSuperSelector} from "../../redux/usersSelector";
 import {Users} from "./Users";
 
 
