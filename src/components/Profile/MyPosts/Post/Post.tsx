@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Post.module.css';
 
-export type PostPropsType ={
+export type PostPropsType = {
     id?: string
     post: string,
     like: string,

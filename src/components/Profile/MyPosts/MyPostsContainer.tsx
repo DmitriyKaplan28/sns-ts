@@ -13,7 +13,7 @@ type MapStateToPropsMyPostsType = {
 
 type mapDispatchToPropsMyPostsType = {
     updateNewPostText: (newText: string) => void
-    addPost: (newPostText:string) => void
+    addPost: (newPostText: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsMyPostsType => {
@@ -24,11 +24,15 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsMyPostsType => {
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsMyPostsType => {
     return {
-        updateNewPostText: (newText: string) => {let action = updateNewPostTextAC(newText)
-            dispatch(action)},
-        addPost: (newPostText:string) => {dispatch(addPostAC(newPostText))},
+        updateNewPostText: (newText: string) => {
+            let action = updateNewPostTextAC(newText)
+            dispatch(action)
+        },
+        addPost: (newPostText: string) => {
+            dispatch(addPostAC(newPostText))
+        },
 
     }
 }
 
-export const MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts);
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);

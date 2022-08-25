@@ -16,32 +16,32 @@ type FormDataType = {
     newPostText: string
 }
 
-export const MyPosts = React.memo((props:MyPostsType) => {
+export const MyPosts = React.memo((props: MyPostsType) => {
 
     /*shouldComponentUpdate(nextProps: Readonly<MyPostsType>, nextState: Readonly<{}>): boolean {
         return this.props !== nextProps || this.state !== nextState;
     }*/
 
-        let postsElements = props?.posts?.map((post) =>
-            <Post post={post.post} like={post.like}/>
-        )
+    let postsElements = props?.posts?.map((post) =>
+        <Post post={post.post} like={post.like}/>
+    )
 
-        const addPost = (formData: FormDataType) => {
-            props.addPost(formData.newPostText)
-        }
+    const addPost = (formData: FormDataType) => {
+        props.addPost(formData.newPostText)
+    }
 
-        return (
+    return (
 
-            <div className={classes.postsBlock}>
-                <h3>My posts</h3>
-                <div>
-                    <AddPostReduxForm onSubmit={addPost}/>
-                </div>
-                <div className={classes.post}>
-                    {postsElements}
-                </div>
+        <div className={classes.postsBlock}>
+            <h3>My posts</h3>
+            <div>
+                <AddPostReduxForm onSubmit={addPost}/>
             </div>
-        );
+            <div className={classes.post}>
+                {postsElements}
+            </div>
+        </div>
+    );
 })
 
 const maxLength10 = maxLengthCreator(10)
