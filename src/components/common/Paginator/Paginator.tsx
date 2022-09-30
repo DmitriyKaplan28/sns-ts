@@ -21,6 +21,4 @@ export const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged
                                   onPageChanged(p)
                               }}>{p}</span>)}
     </div>
-
 }
-
