@@ -5,7 +5,6 @@ import {getAuthUserDataThunkCreator, logoutThunkCreator} from "../../redux/authR
 import {AppStateType} from "../../redux/redux-store";
 import {compose} from "redux";
 
-
 type MapStatePropsType = {
     login: string | null,
     isAuth: boolean,
@@ -19,7 +18,6 @@ type MapDispatchToPropsType = {
 export type HeaderContainerPropsType = MapStatePropsType & MapDispatchToPropsType
 
 class HeaderC extends React.Component<HeaderContainerPropsType> {
-
 
     render() {
         return (
