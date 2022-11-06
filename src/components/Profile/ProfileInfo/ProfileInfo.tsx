@@ -12,6 +12,7 @@ type ProfileInfoType = {
 }
 
 export const ProfileInfo = ({profile, status, updateUserStatus}: ProfileInfoType) => {
+
     if (!profile) {
         return <Preloader/>
     }
