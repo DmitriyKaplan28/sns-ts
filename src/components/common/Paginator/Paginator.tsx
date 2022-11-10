@@ -15,6 +15,7 @@ export const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
     return <div>
         {pages.map(p => <span className={currentPage === p ? styles.selectedPage : ''}
                               onClick={() => {
