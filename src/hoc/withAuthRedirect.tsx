@@ -25,29 +25,3 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
 
     return connect(mapStateToPropsForRedirect)(RedirectComponent)
 }
-
-
-/*
-type MapStateToPropsForRedirectType = {
-    //profile: ProfileType | null
-    isAuth: boolean
-}
-
-export const withAuthRedirect = (Component) => {
-
-    class RedirectComponent extends ReactComponent {
-        render() {
-            if (!props.isAuth) return <Navigate replace to={'/login'}/>
-            return <Dialogs {...props}/>
-        }
-    }
-
-    let mapStateToPropsForRedirect = (state: AppStateType):MapStateToPropsForRedirectType => ({
-        //profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
-    })
-
-    let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);
-
-    return ConnectedAuthRedirectComponent
-}*/
