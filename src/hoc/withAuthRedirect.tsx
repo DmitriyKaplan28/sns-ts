@@ -23,6 +23,5 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
         return <Component {...restProps as T}/>
     }
 
-
     return connect(mapStateToPropsForRedirect)(RedirectComponent)
 }
