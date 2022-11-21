@@ -8,7 +8,6 @@ type MapStateToPropsForRedirectType = {
 }
 
 const mapStateToPropsForRedirect = (state: AppStateType): MapStateToPropsForRedirectType => ({
-    //profile: state.profilePage.profile,
     isAuth: state.auth.isAuth
 })
 
