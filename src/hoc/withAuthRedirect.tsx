@@ -11,7 +11,6 @@ const mapStateToPropsForRedirect = (state: AppStateType): MapStateToPropsForRedi
     isAuth: state.auth.isAuth
 })
 
-
 export function withAuthRedirect<T>(Component: ComponentType<T>) {
 
     const RedirectComponent = (props: MapStateToPropsForRedirectType) => {
