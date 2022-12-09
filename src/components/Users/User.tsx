@@ -26,6 +26,7 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                              alt={'user photo'}/>
                         </NavLink>
                             </div>
+
                         <div>
                             {user.followed
                                 ? <button disabled={followingInProgress.some(id => id === user.id)}
