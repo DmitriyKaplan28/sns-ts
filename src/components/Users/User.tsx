@@ -52,4 +52,3 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
 
     </div>
 }
-
