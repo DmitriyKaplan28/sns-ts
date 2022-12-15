@@ -32,5 +32,6 @@ export const ProfileInfo = ({profile, status, updateUserStatus}: ProfileInfoType
                 <ProfileStatusFunctional status={status} updateUserStatus={updateUserStatus}/>
             </div>
 
-        </div>)
+        </div>
+    )
 }
