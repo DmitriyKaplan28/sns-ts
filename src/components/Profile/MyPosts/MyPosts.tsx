@@ -18,10 +18,6 @@ type FormDataType = {
 
 export const MyPosts = React.memo((props: MyPostsType) => {
 
-    /*shouldComponentUpdate(nextProps: Readonly<MyPostsType>, nextState: Readonly<{}>): boolean {
-        return this.props !== nextProps || this.state !== nextState;
-    }*/
-
     let postsElements = props?.posts?.map((post) =>
         <Post post={post.post} like={post.like}/>
     )
