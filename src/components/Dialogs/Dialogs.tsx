@@ -40,6 +40,7 @@ type FormDataType = {
 const maxLength100 = maxLengthCreator(100)
 
 const AddMessageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <Field placeholder={'Enter your message'}
