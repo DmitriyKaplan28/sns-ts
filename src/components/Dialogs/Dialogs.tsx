@@ -9,8 +9,7 @@ import {maxLengthCreator, requiredField} from "../../utils/validators/validators
 
 export const Dialogs = (props: DialogsPropsType) => {
 
-    let dialogsElements = props?.dialogsState.dialogs?.map((dialog, index) => <Dialog key={index} name={dialog.name}
-                                                                                      id={dialog.id}/>)
+    let dialogsElements = props?.dialogsState.dialogs?.map((dialog, index) => <Dialog key={index} name={dialog.name} id={dialog.id}/>)
     let messagesElements = props?.dialogsState.messages?.map((message, index) => <Message key={index}
                                                                                           message={message.message}/>)
 
