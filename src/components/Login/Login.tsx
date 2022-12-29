@@ -26,6 +26,7 @@ type LoginPropsType = MDTPLoginType & MSTPLoginType
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
         <form onSubmit={handleSubmit}>
+
             {createField('email', 'login', Input, [requiredField])}
             {createField('password', 'password', Input, [requiredField], {type: 'password'})}
             {createField(null, 'rememberMe', Input, [], {type: 'checkbox'}, 'remember me')}
