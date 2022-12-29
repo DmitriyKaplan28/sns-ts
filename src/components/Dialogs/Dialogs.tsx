@@ -12,7 +12,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     let dialogsElements = props?.dialogsState.dialogs?.map((dialog, index) => <Dialog key={index} name={dialog.name} id={dialog.id}/>)
     let messagesElements = props?.dialogsState.messages?.map((message, index) => <Message key={index}
                                                                                           message={message.message}/>)
-
     const addNewMessage = (formData: FormDataType) => {
         props.sendMessage(formData.newMessageBody)
     }
