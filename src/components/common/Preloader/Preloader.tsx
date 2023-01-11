@@ -6,4 +6,3 @@ export const Preloader = () => {
         <div style={{backgroundColor: ''}}><img src={preloader} alt={'preloader GIF'}/></div>
     );
 };
-
