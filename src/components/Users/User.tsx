@@ -49,6 +49,5 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                             <div>{'u.location.city'}</div>
                         </span>
                     </span>
-
     </div>
 }
