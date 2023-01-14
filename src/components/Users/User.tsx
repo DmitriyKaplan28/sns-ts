@@ -16,7 +16,6 @@ type UserPropsType = {
 export const User = ({user, followingInProgress, follow, unfollow}: UserPropsType) => {
 
     return <div>
-
                     <span>
                         <div>
                             <NavLink to={"/profile/" + user.id}
