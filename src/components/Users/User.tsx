@@ -5,7 +5,6 @@ import {UserType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
 import classes from "../Navbar/Navbar.module.css";
 
-
 type UserPropsType = {
     user: UserType
     follow: (userId: number) => void
