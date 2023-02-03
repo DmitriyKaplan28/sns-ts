@@ -25,4 +25,3 @@ export const Users = (props: UsersPropsType) => {
         }
     </div>;
 }
-
