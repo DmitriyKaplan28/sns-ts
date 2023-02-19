@@ -13,6 +13,7 @@ import {initializeTC} from "./redux/appReducer";
 import {AppStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
+
 type MapStateToPropsType = {
     initialized: boolean
 }
