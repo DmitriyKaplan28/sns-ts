@@ -19,7 +19,6 @@ export const FormControl: FC<FormControlPropsType> = ({meta: {touched, error}, c
 }
 
 export const TextArea: FC<WrappedFieldProps> = ({input, meta, ...restProps}) => {
-
     return (
         <FormControl meta={meta}> <textarea {...input} {...restProps}/> </FormControl>
     )
