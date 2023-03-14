@@ -41,8 +41,8 @@ export const User = ({user, followingInProgress, follow, unfollow}: UserPropsTyp
                            <div>{user.name}</div><div>{user.status}</div>
                        </span>
                         <span>
-                            <div>{'u.location.country'}</div>
-                            <div>{'u.location.city'}</div>
+                            <div>Random Country</div>
+                            <div>Random City</div>
                         </span>
                     </span>
     </div>

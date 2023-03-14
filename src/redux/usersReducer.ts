@@ -13,10 +13,6 @@ const SET_TOTAL_USERS_COUNT = 'USERS/SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'USERS/TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'USERS/TOGGLE-IS-FOLLOWING-PROGRESS'
 
-type UserLocationType = {
-    city: string
-    country: string
-}
 
 export type UserType = {
     id: number
@@ -26,7 +22,6 @@ export type UserType = {
     fullName: string
     name: string
     status: string
-    location: UserLocationType
 }
 
 export type UsersType = {
@@ -40,7 +35,7 @@ export type UsersType = {
 
 let initialState: UsersType = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

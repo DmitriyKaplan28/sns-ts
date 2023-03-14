@@ -1,3 +1,12 @@
+.paginator {
+    margin: 5px;
+}
+
 .selectedPage {
     font-weight: bold;
+    margin: 2px;
+}
+
+.page {
+    margin: 2px;
 }
