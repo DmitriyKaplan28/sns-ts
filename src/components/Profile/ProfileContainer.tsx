@@ -62,6 +62,7 @@ export type PhotosType = {
 type MapStateToPropsProfileType = {
     profile: ProfileType | null
     status: string
+    currentUserId: number | null
 }
 
 type MapDispatchToPropsProfileType = {
@@ -102,7 +103,7 @@ export class ProfileC extends React.Component<ProfileStateType & RouteProps> {
         return (
             <Profile {...this.props}
                 // @ts-ignore
-                     isOwner={this.props.router.params.userId === "24103"}
+                     isOwner={+this.props.router.params.userId === this.props.currentUserId}
                      profile={this.props.profile}
                      status={this.props.status}
                      updateUserStatus={this.props.updateUserStatus}
@@ -113,7 +114,8 @@ export class ProfileC extends React.Component<ProfileStateType & RouteProps> {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsProfileType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    currentUserId: state.auth.userId,
 })
 
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, {
