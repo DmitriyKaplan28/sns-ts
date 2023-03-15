@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {
     getUserProfileThunkCreator,
-    getUserStatusThunkCreator, savePhotoThunkCreator,
+    getUserStatusThunkCreator, savePhotoThunkCreator, saveProfileThunkCreator,
     updateUserStatusThunkCreator
 } from "../../redux/profileReducer";
 import {
@@ -70,6 +70,7 @@ type MapDispatchToPropsProfileType = {
     getUserStatus: (userId: number) => void
     updateUserStatus: (status: string) => void
     savePhoto: (photo: string) => void
+    saveProfile: (profile: ProfileType | null) => void
 }
 
 export type ProfileStateType = MapStateToPropsProfileType & MapDispatchToPropsProfileType
@@ -107,7 +108,8 @@ export class ProfileC extends React.Component<ProfileStateType & RouteProps> {
                      profile={this.props.profile}
                      status={this.props.status}
                      updateUserStatus={this.props.updateUserStatus}
-                     savePhoto={this.props.savePhoto}/>
+                     savePhoto={this.props.savePhoto}
+                     saveProfile={this.props.saveProfile}/>
         );
     }
 }
@@ -122,5 +124,6 @@ export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToP
     getUserProfile: getUserProfileThunkCreator,
     getUserStatus: getUserStatusThunkCreator,
     updateUserStatus: updateUserStatusThunkCreator,
-    savePhoto: savePhotoThunkCreator
+    savePhoto: savePhotoThunkCreator,
+    saveProfile: saveProfileThunkCreator
 }), WithRouter, withAuthRedirect)(ProfileC);

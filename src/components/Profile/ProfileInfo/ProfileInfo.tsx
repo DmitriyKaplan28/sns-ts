@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from './ProfileInfo.module.css'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import {ProfileStatusFunctional} from "./ProfileStatus/ProfileStatusFunctional";
 import userPhoto from "./../../../assets/images/user.png";
+import {Contact} from "./Contacts/Contact";
+import {ProfileData} from "./ProfileData/ProfileData";
+import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 
 type ProfileInfoType = {
     isOwner: boolean
@@ -12,6 +15,7 @@ type ProfileInfoType = {
     updateUserStatus: (status: string) => void
     status: string
     savePhoto: (photo: string) => void
+    saveProfile: (profile: ProfileType | null) => void
 }
 
 export const ProfileInfo = ({
@@ -19,17 +23,33 @@ export const ProfileInfo = ({
                                 status,
                                 updateUserStatus,
                                 isOwner,
-                                savePhoto
+                                savePhoto,
+                                saveProfile
                             }: ProfileInfoType) => {
+
+    const [editMode, setEditMode] = useState<boolean>(false)
+
+    const editModeOn= () => {
+        setEditMode(true)
+    }
+
 
     if (!profile) {
         return <Preloader/>
     }
 
-    const selectMainPhoto = (e: {target: any}) => {
+    const selectMainPhoto = (e: { target: any }) => {
         if (e.target.files) {
             savePhoto(e.target.files[0])
         }
+    }
+
+    const onSubmit = (formData: ProfileType | null) => {
+        saveProfile(formData)
+            // @ts-ignore
+            .then(() => {
+                setEditMode(false)
+            })
     }
 
     return (
@@ -45,7 +65,20 @@ export const ProfileInfo = ({
                 <img src={profile.photos.large || userPhoto} alt={'profile photo'}
                      className={classes.userPhoto}/>
                 {isOwner && <input type="file" onChange={selectMainPhoto}/>}
+
+                {editMode
+                    ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit}/>
+                    : <ProfileData profile={profile} isOwner={isOwner} editModeOn={editModeOn}/>}
+
+                <div>
+                    <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+                    // @ts-ignore
+                    return <Contact key={key} title={key} value={profile.contacts[key]}/>
+                })}
+                </div>
+
                 <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+
                 <ProfileStatusFunctional status={status}
                                          updateUserStatus={updateUserStatus}/>
             </div>
