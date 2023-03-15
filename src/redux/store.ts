@@ -1,5 +1,12 @@
 import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
-import {addPostAC, deletePostAC, setStatusAC, setUserProfileAC, updateNewPostTextAC} from "./profileReducer";
+import {
+    addPostAC,
+    deletePostAC,
+    savePhotoSuccessAC,
+    setStatusAC,
+    setUserProfileAC,
+    updateNewPostTextAC
+} from "./profileReducer";
 import {sendMessageAC} from "./dialogsReducer";
 import {
     followAC,
@@ -45,3 +52,4 @@ export type ActionTypes =
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof setInitializedAC>
     | ReturnType<typeof deletePostAC>
+    | ReturnType<typeof savePhotoSuccessAC>

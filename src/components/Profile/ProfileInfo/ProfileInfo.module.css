@@ -1,3 +1,7 @@
 .descriptionBlock {
     padding:10px
 }
+
+.userPhoto {
+    max-width: 200px;
+}

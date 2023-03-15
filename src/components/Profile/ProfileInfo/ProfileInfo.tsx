@@ -4,17 +4,32 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import {ProfileStatusFunctional} from "./ProfileStatus/ProfileStatusFunctional";
+import userPhoto from "./../../../assets/images/user.png";
 
 type ProfileInfoType = {
+    isOwner: boolean
     profile: ProfileType | null
     updateUserStatus: (status: string) => void
     status: string
+    savePhoto: (photo: string) => void
 }
 
-export const ProfileInfo = ({profile, status, updateUserStatus}: ProfileInfoType) => {
+export const ProfileInfo = ({
+                                profile,
+                                status,
+                                updateUserStatus,
+                                isOwner,
+                                savePhoto
+                            }: ProfileInfoType) => {
 
     if (!profile) {
         return <Preloader/>
+    }
+
+    const selectMainPhoto = (e: {target: any}) => {
+        if (e.target.files) {
+            savePhoto(e.target.files[0])
+        }
     }
 
     return (
@@ -27,9 +42,12 @@ export const ProfileInfo = ({profile, status, updateUserStatus}: ProfileInfoType
             </div>
 
             <div className={classes.descriptionBlock}>
-                <img src={profile.photos.large} alt={'profile photo'}/>
+                <img src={profile.photos.large || userPhoto} alt={'profile photo'}
+                     className={classes.userPhoto}/>
+                {isOwner && <input type="file" onChange={selectMainPhoto}/>}
                 <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
-                <ProfileStatusFunctional status={status} updateUserStatus={updateUserStatus}/>
+                <ProfileStatusFunctional status={status}
+                                         updateUserStatus={updateUserStatus}/>
             </div>
 
         </div>

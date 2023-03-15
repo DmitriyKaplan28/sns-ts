@@ -1,6 +1,6 @@
 import {ActionTypes} from "./store";
 
-import {ProfileType} from "../components/Profile/ProfileContainer";
+import {PhotosType, ProfileType} from "../components/Profile/ProfileContainer";
 import {profileAPI} from "../api/api";
 import {ThunkDispatchType, ThunkType} from "./usersReducer";
 
@@ -9,6 +9,7 @@ const UPDATE_NEW_POST_TEXT = 'PROFILE/UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'PROFILE/SET-USER-PROFILE'
 const SET_STATUS = 'PROFILE/SET-STATUS'
 const DELETE_POST = 'PROFILE/DELETE-POST'
+const SAVE_PHOTO_SUCCESS = 'PROFILE/SET-PHOTO-SUCCESS'
 
 let initialState = {
     posts: [
@@ -52,6 +53,11 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
                 ...state,
                 status: action.status
             };
+        case SAVE_PHOTO_SUCCESS:
+            return {
+                ...state,
+                profile: {...state.profile!, photos: action.photo}
+            };
 
         default:
             return state;
@@ -93,6 +99,13 @@ export const setStatusAC = (status: string) => {
     } as const
 }
 
+export const savePhotoSuccessAC = (photo: PhotosType) => {
+    return {
+        type: SAVE_PHOTO_SUCCESS,
+        photo,
+    } as const
+}
+
 export const getUserProfileThunkCreator = (userId: number): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
         let response = await profileAPI.getProfile(userId)
@@ -112,6 +125,15 @@ export const updateUserStatusThunkCreator = (status: string): ThunkType => {
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatusAC(status))
+        }
+    }
+}
+
+export const savePhotoThunkCreator = (photo: string): ThunkType => {
+    return async (dispatch: ThunkDispatchType) => {
+        let response = await profileAPI.savePhoto(photo)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSuccessAC(response.data.data.photos))
         }
     }
 }
