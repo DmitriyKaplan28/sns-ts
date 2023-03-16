@@ -40,7 +40,7 @@ export const profileAPI = {
             }
         })
     },
-    saveProfile(profile: ProfileType | null){
+    saveProfile(profile: ProfileType | null) {
         return instance.put(`profile`, profile);
     }
 }
@@ -55,4 +55,11 @@ export const authAPI = {
     logout() {
         return instance.delete(`auth/login`)
     }
+}
+
+export const securityAPI = {
+    getCaptchaURL() {
+        return instance.get(`security/get-captcha-url`)
+    },
+
 }

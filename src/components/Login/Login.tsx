@@ -12,24 +12,29 @@ type FormDataType = {
     login: string
     password: string
     rememberMe: boolean
+    captchaURL: string | null
 }
 type MDTPLoginType = {
-    login: (email: string, password: string, rememberMe: boolean) => void
+    login: (email: string, password: string, rememberMe: boolean, captchaURL: string | null) => void
 }
 type MSTPLoginType = {
     isAuth: boolean
     userId: number | null
+    captchaURL: string | null
 }
 
 type LoginPropsType = MDTPLoginType & MSTPLoginType
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error, initialValues}) => {
     return (
         <form onSubmit={handleSubmit}>
 
             {createField('email', 'login', Input, [requiredField])}
             {createField('password', 'password', Input, [requiredField], {type: 'password'})}
             {createField(null, 'rememberMe', Input, [], {type: 'checkbox'}, 'remember me')}
+
+            {initialValues.captchaURL && <img src={initialValues.captchaURL} alt=""/>}
+            {initialValues.captchaURL && createField("Image symbols", 'captchaURL', Input, [requiredField], )  }
 
             {error && <div className={style.formAllError}>
                 {error}
@@ -45,7 +50,7 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.login, formData.password, formData.rememberMe)
+        props.login(formData.login, formData.password, formData.rememberMe, formData.captchaURL)
     }
 
     if (props.isAuth) {
@@ -62,7 +67,8 @@ const Login = (props: LoginPropsType) => {
 
 let mapStateToProps = (state: AppStateType): MSTPLoginType => ({
     isAuth: state.auth.isAuth,
-    userId: state.auth.userId
+    userId: state.auth.userId,
+    captchaURL: state.auth.captchaURL,
 })
 
 export default connect(mapStateToProps, {login: loginThunkCreator})(Login)

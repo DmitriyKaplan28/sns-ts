@@ -17,7 +17,7 @@ import {
     unfollowAC
 } from "./usersReducer";
 import {ProfileStateType} from "../components/Profile/ProfileContainer";
-import {setUserDataAC} from "./authReducer";
+import {getCaptchaURLAC, setUserDataAC} from "./authReducer";
 import {setInitializedAC} from "./appReducer";
 
 export type StateType = {
@@ -53,3 +53,4 @@ export type ActionTypes =
     | ReturnType<typeof setInitializedAC>
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoSuccessAC>
+    | ReturnType<typeof getCaptchaURLAC>
