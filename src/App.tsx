@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
-import {Routes, Route, BrowserRouter} from "react-router-dom";
+import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {WithRouter} from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
@@ -36,9 +36,18 @@ type AppType = MapDispatchToPropsType & MapStateToPropsType
 
 class App extends React.Component<AppType> {
 
+    handleError =() =>{
+
+    }
+
     componentDidMount() {
         this.props.initializeTC()
-    }
+        window.addEventListener("unhandledrejection", function (pro) {
+        }
+    })
+
+
+
 
     render() {
         if (!this.props.initialized) {
@@ -61,9 +70,11 @@ class App extends React.Component<AppType> {
                                 <ProfileContainer/>
                             </Suspense>
                         }/>
-                        <Route path='/profile/' element={<ProfileContainer/>}/>
+                        {/*<Route path='/profile' element={<ProfileContainer/>}/>*/}
                         <Route path='/users' element={<UsersContainer/>}/>
                         <Route path='/login' element={<Login/>}/>
+                        <Route path='/*' element={<div>404 NOT FOUND</div>}/>
+                        <Route path='/' element={<Navigate to="/profile/:userId" replace />}/>
                     </Routes>
                 </div>
             </div>
@@ -77,7 +88,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 const AppContainer = compose<React.ComponentType>(connect(mapStateToProps, {initializeTC}), WithRouter)(App);
 
-export const SamuraiJSApp = () => {
+export const  SamuraiJSApp = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
