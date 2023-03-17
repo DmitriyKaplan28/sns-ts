@@ -36,7 +36,7 @@ type AppType = MapDispatchToPropsType & MapStateToPropsType
 
 class App extends React.Component<AppType> {
 
-    handleError =() =>{
+    handleError = () => {
 
     }
 
@@ -44,9 +44,9 @@ class App extends React.Component<AppType> {
         this.props.initializeTC()
         window.addEventListener("unhandledrejection", function (pro) {
         }
-    })
+    }
 
-
+)
 
 
     render() {
@@ -74,7 +74,8 @@ class App extends React.Component<AppType> {
                         <Route path='/users' element={<UsersContainer/>}/>
                         <Route path='/login' element={<Login/>}/>
                         <Route path='/*' element={<div>404 NOT FOUND</div>}/>
-                        <Route path='/' element={<Navigate to="/profile/:userId" replace />}/>
+                        <Route path='/'
+                               element={<Navigate to="/profile/:userId" replace/>}/>
                     </Routes>
                 </div>
             </div>
@@ -88,7 +89,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 const AppContainer = compose<React.ComponentType>(connect(mapStateToProps, {initializeTC}), WithRouter)(App);
 
-export const  SamuraiJSApp = () => {
+export const SamuraiJSApp = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
