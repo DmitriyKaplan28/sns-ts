@@ -29,7 +29,8 @@ export const ProfileStatusFunctional = (props: ProfileStatusType) => {
             </div>}
             {editMode &&
                 <div>
-                    <input onChange={onStatusChange} onBlur={editModeChange} value={status}/>
+                    <input onChange={onStatusChange} onBlur={editModeChange}
+                           value={status}/>
                 </div>}
         </div>
     );

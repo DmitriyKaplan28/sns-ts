@@ -1,5 +1,4 @@
 import {ActionTypes} from "./store";
-
 import {PhotosType, ProfileType} from "../components/Profile/ProfileContainer";
 import {profileAPI} from "../api/api";
 import {ThunkDispatchType, ThunkType} from "./usersReducer";
@@ -132,7 +131,6 @@ export const updateUserStatusThunkCreator = (status: string): ThunkType => async
 
     }
 }
-
 
 export const savePhotoThunkCreator = (photo: string): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
