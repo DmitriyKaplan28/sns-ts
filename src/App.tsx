@@ -23,7 +23,6 @@ const ProfileContainer = lazy(() =>
         .then(({ProfileContainer}) => ({default: ProfileContainer})),
 );
 
-
 type MapStateToPropsType = {
     initialized: boolean
 }
@@ -36,17 +35,20 @@ type AppType = MapDispatchToPropsType & MapStateToPropsType
 
 class App extends React.Component<AppType> {
 
-    handleError = () => {
+    handleError = (promiseRejectionEvent: any) => {
+        alert('Error');
+        console.error(promiseRejectionEvent)
 
     }
 
     componentDidMount() {
         this.props.initializeTC()
-        window.addEventListener("unhandledrejection", function (pro) {
-        }
+        window.addEventListener("unhandledrejection", this.handleError)
     }
 
-)
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.handleError)
+    }
 
 
     render() {

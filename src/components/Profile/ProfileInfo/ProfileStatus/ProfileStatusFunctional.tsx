@@ -11,7 +11,7 @@ export const ProfileStatusFunctional = (props: ProfileStatusType) => {
 
     useEffect(() => {
         setStatus(props.status)
-    }, [])
+    }, [props.status])
 
     const editModeChange = () => {
         setEditMode(!editMode)

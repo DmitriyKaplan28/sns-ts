@@ -6,10 +6,12 @@ const SET_INITIALIZED = 'APP/SET-INITIALIZED'
 
 export type AuthPropsType = {
     initialized: boolean
+    globalError: Error | null
 }
 
 let initialState: AuthPropsType = {
-    initialized: false
+    initialized: false,
+    globalError: null
 }
 
 export const appReducer = (state: AuthPropsType = initialState, action: ActionTypes): AuthPropsType => {

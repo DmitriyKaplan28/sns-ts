@@ -107,7 +107,7 @@ export const savePhotoSuccessAC = (photo: PhotosType) => {
     } as const
 }
 
-export const getUserProfileThunkCreator = (userId: number|null): ThunkType => {
+export const getUserProfileThunkCreator = (userId: number | null): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
         let response = await profileAPI.getProfile(userId)
         dispatch(setUserProfileAC(response.data));
@@ -121,14 +121,18 @@ export const getUserStatusThunkCreator = (userId: number): ThunkType => {
     }
 }
 
-export const updateUserStatusThunkCreator = (status: string): ThunkType => {
-    return async (dispatch: ThunkDispatchType) => {
+export const updateUserStatusThunkCreator = (status: string): ThunkType => async (dispatch: ThunkDispatchType) => {
+
+    try {
         let response = await profileAPI.updateStatus(status)
         if (response.data.resultCode === 0) {
             dispatch(setStatusAC(status))
         }
+    } catch (error) {
+
     }
 }
+
 
 export const savePhotoThunkCreator = (photo: string): ThunkType => {
     return async (dispatch: ThunkDispatchType) => {
