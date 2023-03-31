@@ -30,7 +30,7 @@ export const setInitializedAC = () => {
     } as const
 }
 
-export const initializeTC  = (): ThunkType => (dispatch: ThunkDispatchType) => {
+export const initializeTC = (): ThunkType => (dispatch: ThunkDispatchType) => {
     let promise = dispatch(getAuthUserDataThunkCreator());
     Promise.all([promise])
         .then(() => {
