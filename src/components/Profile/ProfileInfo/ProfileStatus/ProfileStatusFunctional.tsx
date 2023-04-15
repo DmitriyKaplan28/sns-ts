@@ -34,5 +34,4 @@ export const ProfileStatusFunctional = (props: ProfileStatusType) => {
                 </div>}
         </div>
     );
-
 }

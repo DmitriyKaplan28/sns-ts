@@ -3,7 +3,6 @@ import {UsersType} from "../../redux/usersReducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User/User";
 
-
 type UsersPropsType = {
     usersState: UsersType
     follow: (id: number) => void
