@@ -12,19 +12,21 @@ type UsersPropsType = {
     toggleIsFollowingProgress: (isFetching: boolean, id: number) => void
 }
 
-export const Users = (props: UsersPropsType) => {
+/*export const Users = (props: UsersPropsType) => {*/
+export const Users = ({usersState, follow, unfollow, setCurrentPage, onPageChanged, toggleIsFollowingProgress}: UsersPropsType) => {
 
     return <div>
-        <Paginator totalItemsCount={props.usersState.totalUsersCount}
-                   pageSize={props.usersState.pageSize}
-                   currentPage={props.usersState.currentPage}
-                   onPageChanged={props.onPageChanged}
+        <Paginator totalItemsCount={usersState.totalUsersCount}
+                   pageSize={usersState.pageSize}
+                   currentPage={usersState.currentPage}
+                   onPageChanged={onPageChanged}
                    portionSize={10}/>
         {
-            props.usersState.users.map(u => <User key={u.id} user={u}
-                                                  followingInProgress={props.usersState.followingInProgress}
-                                                  follow={props.follow}
-                                                  unfollow={props.unfollow}/>)
+            usersState.users.map(u => <User key={u.id}
+                                                  user={u}
+                                                  followingInProgress={usersState.followingInProgress}
+                                                  follow={follow}
+                                                  unfollow={unfollow}/>)
         }
     </div>;
 }
