@@ -5,32 +5,35 @@ type ProfileStatusType = {
     updateUserStatus: (status: string) => void
 }
 
-export const ProfileStatusFunctional = (props: ProfileStatusType) => {
+export const ProfileStatusFunctional = ({
+                                            status,
+                                            updateUserStatus
+                                        }: ProfileStatusType) => {
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [status, setStatus] = useState<string>(props.status)
+    const [profileStatus, setProfileStatus] = useState<string>(status)
 
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+        setProfileStatus(status)
+    }, [status])
 
     const editModeChange = () => {
         setEditMode(!editMode)
     }
 
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setStatus(e.currentTarget.value)
-        props.updateUserStatus(status)
+        setProfileStatus(e.currentTarget.value)
+        updateUserStatus(profileStatus)
     }
 
     return (
         <div>
             {!editMode && <div>
-                <span onDoubleClick={editModeChange}>{props.status || '----'}</span>
+                <span onDoubleClick={editModeChange}>{status || '----'}</span>
             </div>}
             {editMode &&
                 <div>
                     <input onChange={onStatusChange} onBlur={editModeChange}
-                           value={status}/>
+                           value={profileStatus}/>
                 </div>}
         </div>
     );

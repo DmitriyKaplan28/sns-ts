@@ -13,7 +13,7 @@ type UsersPropsType = {
 }
 
 /*export const Users = (props: UsersPropsType) => {*/
-export const Users = ({usersState, follow, unfollow, setCurrentPage, onPageChanged, toggleIsFollowingProgress}: UsersPropsType) => {
+export const Users = ({usersState, follow, unfollow, onPageChanged, ...restProps}: UsersPropsType) => {
 
     return <div>
         <Paginator totalItemsCount={usersState.totalUsersCount}
