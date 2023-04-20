@@ -12,16 +12,16 @@ export type ProfilePropsType = {
     saveProfile: (profile: ProfileType | null) => void
 }
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = ({isOwner, profile, updateUserStatus, status, savePhoto, saveProfile}: ProfilePropsType) => {
 
     return (
         <div>
-            <ProfileInfo isOwner={props.isOwner}
-                         profile={props.profile}
-                         status={props.status}
-                         updateUserStatus={props.updateUserStatus}
-                         savePhoto={props.savePhoto}
-                         saveProfile={props.saveProfile}
+            <ProfileInfo isOwner={isOwner}
+                         profile={profile}
+                         status={status}
+                         updateUserStatus={updateUserStatus}
+                         savePhoto={savePhoto}
+                         saveProfile={saveProfile}
             />
             <MyPostsContainer/>
         </div>
