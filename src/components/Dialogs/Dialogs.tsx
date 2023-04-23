@@ -7,13 +7,17 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {TextArea} from "../common/FormControls/FormControls";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
 
-export const Dialogs = (props: DialogsPropsType) => {
+/*export const Dialogs = (props: DialogsPropsType) => {*/
+export const Dialogs = ({dialogsState, sendMessage, isAuth}: DialogsPropsType) => {
 
-    let dialogsElements = props?.dialogsState.dialogs?.map((dialog, index) => <Dialog key={index} name={dialog.name} id={dialog.id}/>)
-    let messagesElements = props?.dialogsState.messages?.map((message, index) => <Message key={index}
-                                                                                          message={message.message}/>)
+    let dialogsElements = dialogsState.dialogs?.map((dialog, index) => <Dialog key={index}
+                                                                               name={dialog.name}
+                                                                               id={dialog.id}/>)
+    let messagesElements = dialogsState.messages?.map((message, index) => <Message
+        key={index}
+        message={message.message}/>)
     const addNewMessage = (formData: FormDataType) => {
-        props.sendMessage(formData.newMessageBody)
+        sendMessage(formData.newMessageBody)
     }
 
     return (
