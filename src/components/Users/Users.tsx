@@ -12,6 +12,7 @@ type UsersPropsType = {
     toggleIsFollowingProgress: (isFetching: boolean, id: number) => void
 }
 
+
 export const Users = ({usersState, follow, unfollow, onPageChanged, ...restProps}: UsersPropsType) => {
 
     return <div>

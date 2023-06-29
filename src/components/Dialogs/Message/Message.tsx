@@ -6,6 +6,7 @@ export type MessageType = {
     id?: string
 }
 
+
 export const Message = ({message, id}: MessageType) => {
     return (
         <div className={classes.message}>{message}</div>
