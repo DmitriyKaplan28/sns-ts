@@ -12,7 +12,6 @@ export type ProfilePropsType = {
     saveProfile: (profile: ProfileType | null) => void
 }
 
-
 export const Profile = ({isOwner, profile, updateUserStatus, status, savePhoto, saveProfile}: ProfilePropsType) => {
 
     return (
