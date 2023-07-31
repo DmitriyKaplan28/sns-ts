@@ -1,5 +1,5 @@
 import {ActionTypes} from "./store";
-import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
+import {DialogsStateType} from "../features/Dialogs/DialogsContainer";
 
 const SEND_MESSAGE = 'DIALOGS/SEND-MESSAGE'
 

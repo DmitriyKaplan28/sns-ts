@@ -1,5 +1,5 @@
 import {ActionTypes} from "./store";
-import {PhotosType, ProfileType} from "../components/Profile/ProfileContainer";
+import {PhotosType, ProfileType} from "../features/Profile/ProfileContainer";
 import {profileAPI} from "../api/api";
 import {ThunkDispatchType, ThunkType} from "./usersReducer";
 import {stopSubmit} from "redux-form";
