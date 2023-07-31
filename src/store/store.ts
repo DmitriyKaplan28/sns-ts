@@ -1,4 +1,4 @@
-import {DialogsStateType} from "../components/Dialogs/DialogsContainer";
+import {DialogsStateType} from "../features/Dialogs/DialogsContainer";
 import {
     addPostAC,
     deletePostAC,
@@ -16,7 +16,7 @@ import {
     toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unfollowAC
 } from "./usersReducer";
-import {ProfileStateType} from "../components/Profile/ProfileContainer";
+import {ProfileStateType} from "../features/Profile/ProfileContainer";
 import {getCaptchaURLAC, setUserDataAC} from "./authReducer";
 import {setInitializedAC} from "./appReducer";
 
