@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import classes from './ProfileInfo.module.css'
-import {Preloader} from "../../common/Preloader/Preloader";
+import {Preloader} from "../../../common/components/Preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import {ProfileStatusFunctional} from "./ProfileStatus/ProfileStatusFunctional";
-import userPhoto from "./../../../assets/images/user.png";
+import userPhoto from "../../../common/assets/images/user.png";
 import {Contact} from "./Contacts/Contact";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";

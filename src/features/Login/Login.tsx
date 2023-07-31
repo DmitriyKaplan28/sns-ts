@@ -1,11 +1,11 @@
 import React from 'react';
 import {InjectedFormProps, reduxForm} from 'redux-form';
-import {createField, Input} from "../common/FormControls/FormControls";
-import {requiredField} from "../../utils/validators/validators";
+import {createField, Input} from "../../common/components/FormControls/FormControls";
+import {requiredField} from "../../common/utils/validators/validators";
 import {connect} from "react-redux";
-import {loginThunkCreator} from "../../redux/authReducer";
+import {loginThunkCreator} from "../../store/authReducer";
 import {Navigate} from "react-router-dom";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../store/redux-store";
 import style from './Login.module.css';
 
 type FormDataType = {

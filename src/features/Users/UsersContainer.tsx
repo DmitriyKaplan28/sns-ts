@@ -1,16 +1,16 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../store/redux-store";
 import {
     followThunkCreator, getUsersThunkCreator,
     setCurrentPageAC,
     toggleIsFollowingProgressAC,
     unfollowThunkCreator,
     UsersType
-} from "../../redux/usersReducer";
-import {Preloader} from "../common/Preloader/Preloader";
+} from "../../store/usersReducer";
+import {Preloader} from "../../common/components/Preloader/Preloader";
 import {compose} from "redux";
-import {getUsersPageSuperSelector} from "../../redux/usersSelector";
+import {getUsersPageSuperSelector} from "../../store/usersSelector";
 import {Users} from "./Users";
 
 

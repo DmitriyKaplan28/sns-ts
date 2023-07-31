@@ -1,25 +1,25 @@
 import React, {lazy, Suspense} from 'react';
 import './App.css';
-import {Navbar} from "./components/Navbar/Navbar";
+import {Navbar} from "./features/Navbar/Navbar";
 import {Routes, Route, BrowserRouter, Navigate} from "react-router-dom";
-import {UsersContainer} from "./components/Users/UsersContainer";
-import {WithRouter} from "./components/Profile/ProfileContainer";
-import {HeaderContainer} from "./components/Header/HeaderContainer";
-import Login from "./components/Login/Login";
+import {UsersContainer} from "./features/Users/UsersContainer";
+import {WithRouter} from "./features/Profile/ProfileContainer";
+import {HeaderContainer} from "./features/Header/HeaderContainer";
+import Login from "./features/Login/Login";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
-import {initializeTC} from "./redux/appReducer";
-import {AppStateType, store} from "./redux/redux-store";
-import {Preloader} from "./components/common/Preloader/Preloader";
+import {initializeTC} from "./store/appReducer";
+import {AppStateType, store} from "./store/redux-store";
+import {Preloader} from "./common/components/Preloader/Preloader";
 
 
 const DialogsContainer = lazy(() =>
-    import('./components/Dialogs/DialogsContainer')
+    import('./features/Dialogs/DialogsContainer')
         .then(({DialogsContainer}) => ({default: DialogsContainer})),
 );
 
 const ProfileContainer = lazy(() =>
-    import('./components/Profile/ProfileContainer')
+    import('./features/Profile/ProfileContainer')
         .then(({ProfileContainer}) => ({default: ProfileContainer})),
 );
 

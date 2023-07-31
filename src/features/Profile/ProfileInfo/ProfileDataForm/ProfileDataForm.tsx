@@ -1,6 +1,6 @@
 import React from 'react';
 import {ProfileType} from "../../ProfileContainer";
-import {createField, Input, TextArea} from "../../../common/FormControls/FormControls";
+import {createField, Input, TextArea} from "../../../../common/components/FormControls/FormControls";
 import {InjectedFormProps, reduxForm} from "redux-form";
 import style from './ProfileDataForm.module.css'
 

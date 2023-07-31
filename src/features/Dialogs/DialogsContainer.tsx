@@ -1,10 +1,10 @@
 import React from 'react';
 import {DialogType} from "./Dialog/Dialog";
 import {MessageType} from "./Message/Message";
-import {sendMessageAC} from "../../redux/dialogsReducer";
+import {sendMessageAC} from "../../store/dialogsReducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../store/redux-store";
 import {compose, Dispatch} from "redux";
 
 export type DialogsStateType = {

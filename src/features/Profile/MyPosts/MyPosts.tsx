@@ -2,8 +2,8 @@ import React from "react";
 import classes from './MyPosts.module.css';
 import {Post, PostPropsType} from "./Post/Post";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
-import {TextArea} from "../../common/FormControls/FormControls";
+import {maxLengthCreator, requiredField} from "../../../common/utils/validators/validators";
+import {TextArea} from "../../../common/components/FormControls/FormControls";
 
 type MyPostsType = {
     posts: PostPropsType[]

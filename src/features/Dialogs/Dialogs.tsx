@@ -4,8 +4,8 @@ import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogsPropsType} from "./DialogsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {TextArea} from "../common/FormControls/FormControls";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {TextArea} from "../../common/components/FormControls/FormControls";
+import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
 
 export const Dialogs = ({dialogsState, sendMessage, isAuth}: DialogsPropsType) => {
 

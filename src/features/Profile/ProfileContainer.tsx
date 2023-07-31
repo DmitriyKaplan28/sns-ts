@@ -1,12 +1,12 @@
 import React, {JSXElementConstructor} from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {AppStateType} from "../../store/redux-store";
 import {
     getUserProfileThunkCreator,
     getUserStatusThunkCreator, savePhotoThunkCreator, saveProfileThunkCreator,
     updateUserStatusThunkCreator
-} from "../../redux/profileReducer";
+} from "../../store/profileReducer";
 import {
     RouteProps,
     useLocation,
