@@ -3,7 +3,6 @@ import classes from './ProfileInfo.module.css'
 import {Preloader} from "../../../common/components/Preloader/Preloader";
 import {ProfileType} from "../ProfileContainer";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
-import {ProfileStatusFunctional} from "./ProfileStatus/ProfileStatusFunctional";
 import userPhoto from "../../../common/assets/images/user.png";
 import {Contact} from "./Contacts/Contact";
 import {ProfileData} from "./ProfileData/ProfileData";
@@ -77,10 +76,8 @@ export const ProfileInfo = ({
                 })}
                 </div>
 
-                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
-
-                <ProfileStatusFunctional status={status}
-                                         updateUserStatus={updateUserStatus}/>
+                <ProfileStatus status={status}
+                               updateUserStatus={updateUserStatus}/>
             </div>
 
         </div>
