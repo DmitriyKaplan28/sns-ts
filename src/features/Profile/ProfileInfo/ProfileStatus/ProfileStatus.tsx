@@ -6,9 +6,9 @@ type ProfileStatusType = {
 }
 
 export const ProfileStatus = ({
-                                            status,
-                                            updateUserStatus
-                                        }: ProfileStatusType) => {
+                                  status,
+                                  updateUserStatus
+                              }: ProfileStatusType) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const [profileStatus, setProfileStatus] = useState<string>(status)
 
