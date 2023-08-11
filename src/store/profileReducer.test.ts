@@ -1,7 +1,6 @@
 import {addPostAC, deletePostAC, profileReducer} from "./profileReducer";
 import {ProfileType} from "../features/Profile/ProfileContainer";
 
-
 type PostType = {
     id: string
     post: string
