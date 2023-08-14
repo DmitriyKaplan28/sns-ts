@@ -1,5 +1,6 @@
 import {UserType} from "../../../store/usersReducer";
 
+
 export const updateObjectInArray = (items: UserType[], itemId: number, objUserPropName: keyof UserType,
                                     newUserObjProps: { followed: boolean }): UserType[] => {
     return items.map(i => {

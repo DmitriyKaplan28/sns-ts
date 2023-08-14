@@ -1,5 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 
+
 type ProfileStatusType = {
     status: string
     updateUserStatus: (status: string) => void

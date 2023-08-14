@@ -8,6 +8,7 @@ import {Contact} from "./Contacts/Contact";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 
+
 type ProfileInfoType = {
     isOwner: boolean
     profile: ProfileType | null
