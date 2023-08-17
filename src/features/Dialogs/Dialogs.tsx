@@ -7,6 +7,11 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {TextArea} from "../../common/components/FormControls/FormControls";
 import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
 
+
+type FormDataType = {
+    newMessageBody: string
+}
+
 export const Dialogs = ({dialogsState, sendMessage, isAuth}: DialogsPropsType) => {
 
     let dialogsElements = dialogsState.dialogs?.map((dialog, index) => <Dialog key={index}
@@ -34,9 +39,6 @@ export const Dialogs = ({dialogsState, sendMessage, isAuth}: DialogsPropsType) =
     )
 }
 
-type FormDataType = {
-    newMessageBody: string
-}
 
 const maxLength100 = maxLengthCreator(100)
 
