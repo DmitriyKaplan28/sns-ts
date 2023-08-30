@@ -1,9 +1,11 @@
 .item {
-color: darkgoldenrod;
+    color: darkgoldenrod;
 }
+
 .postsBlock {
     padding: 10px;
 }
+
 .post {
-    margin-top:10px;
+    margin-top: 10px;
 }
