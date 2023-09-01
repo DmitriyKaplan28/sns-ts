@@ -16,7 +16,8 @@ export const Navbar = () => {
 
 	return (
 		<nav className={classes.nav}>
-			{menuItems.map(m => <CustomNavLink path={m.path} menuItem={m.menuItem}/>)}
+			{menuItems.map(m => <CustomNavLink path={m.path}
+											   menuItem={m.menuItem}/>)}
 		</nav>
 	);
 };
