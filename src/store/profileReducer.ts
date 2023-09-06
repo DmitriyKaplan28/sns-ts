@@ -4,6 +4,7 @@ import {profileAPI} from "../api/api";
 import {ThunkDispatchType, ThunkType} from "./usersReducer";
 import {stopSubmit} from "redux-form";
 
+
 const ADD_POST = "PROFILE/ADD-POST";
 const UPDATE_NEW_POST_TEXT = "PROFILE/UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "PROFILE/SET-USER-PROFILE";
