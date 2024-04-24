@@ -18,9 +18,3 @@ This project is social network. The following libraries were installed and used 
 - **reselect**
 - **typescript** 
 - **uuid** and **@types/uuid**
-
-
-![](src/common/assets/images/screenshots/login.png)
-![](src/common/assets/images/screenshots/profile.png)
-![](src/common/assets/images/screenshots/messages.png)
-![](src/common/assets/images/screenshots/users.png)
